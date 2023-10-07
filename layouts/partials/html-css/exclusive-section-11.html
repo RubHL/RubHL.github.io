@@ -1,0 +1,198 @@
+<h2 style="background-color:SaddleBrown; margin:0px;">BOOSTRAP</h2>  
+      
+      <!-- 
+      ╔╗ ╔═╗╔═╗╔═╗╔╦╗╦═╗╔═╗╔═╗
+      ╠╩╗║ ║║ ║╚═╗ ║ ╠╦╝╠═╣╠═╝
+      ╚═╝╚═╝╚═╝╚═╝ ╩ ╩╚═╩ ╩╩  -->
+
+      container-fluid <!-- Contendor full width container 
+          width= 100%
+          -->
+
+      container <!-- Responsive fixed width container 
+
+              XXL ≥1400px
+              Laptops and Desktops
+              Max-width: 1320px 	 
+
+              Extra Large ≥1200 px
+              Laptops and Desktops	
+              Max-width: 1140px | container-xxl: 100% 
+
+              LARGE ≥992px	
+              Laptops
+              Max-width: 960px  | container-xxl: 100%  container-xl: 100%
+
+              MEDIUM ≥768px	
+              Tablets
+              Max-width: 720px  | container-xxl: 100%  container-xl: 100%  container-lg: 100%
+
+              SMALL ≥576px	
+              Horizontal phones
+              Max-width: 540px  | container-xxl: 100%  container-xl: 100%  container-lg: 100%  container-md: 100%
+
+              EXTRA SMALL <576 px	
+              Phones
+              Max-width: 100%   | container-xxl: 100%  container-xl: 100%  container-lg: 100%  container-md: 100%  container-sm: 100% 
+
+          💡 Cada clase se amplía, por lo que si desea establecer los mismos anchos para sm y md, solo necesita especificar sm.
+          --> 
+
+      Por defecto
+          container {
+              padding-top: 0px;
+
+              padding-left: ¿?;
+              padding-right: ¿?;
+  
+              padding-bottom: 0px;
+          }
+
+          p{
+              margin-top: 0px
+              margin-bottom: 1rem(16px por defecto).
+          }
+
+          font-size de 1 rem (16 px por defecto)
+          line-height es 1.5.
+
+
+      m -[0~5]   <!--marging -->
+      mt-[0~5]   <!--marging TOP-->
+
+      p-[0~5]    <!--padding-->
+      pt-[0~5]   <!--padding TOP-->
+
+      
+
+      <!-- Bootstrap 5 Grid System -->
+      
+      - Esta construido con flexbox y permite hasta 12 columnas en la pagina
+      
+      <!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+      Col No stackea 
+
+      <style>
+          #Boost div:nth-child(odd){
+              background-color: chocolate;
+              
+          }
+          #Boost div:nth-child(even){
+              background-color: aqua;
+          }
+      </style>
+      <div class="row" id="Boost">
+          <div class="col">25%</div>
+          <div class="col">25%</div>
+          <div class="col">25%</div>
+          <div class="col">25%</div>
+      </div> 
+
+      <div class="row">
+          <div class="col">50%</div>
+          <div class="col">50%</div>
+      </div>  
+
+      <div class="row">
+          <div class="col">33.33%</div>
+          <div class="col">33.33%</div>
+          <div class="col">33.33%</div>
+      </div>  
+
+      <div class="row">
+          <div class="col">25%</div>
+          <div class="col">25%</div>
+          <div class="col">25%</div>
+          <div class="col">25%</div>
+      </div>   
+      
+      <!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+
+      Col-[n] No stackea 
+
+      <div class="row">
+      <div class="row row-cols-2">
+          <div class="col-4">col-4</div>
+          <div class="row">
+              <div class="col-6">.col-6</div>
+              <div class="col-6">.col-6</div>
+          </div>
+          <div class="col-4">col-4</div>
+          <div class="col-4">col-4</div>
+      </div>
+
+
+
+      <div class="row">
+          <div class="col">col</div>
+          <div class="col-6">col-6</div>
+          <div class="col">col</div>
+      </div>
+
+      <!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+
+      Col-[tipo] Stackea si no hay un Col-[n] 💡 Predomina lo restrictivo
+
+      <div class="row ">
+          <div class="col-sm">50%</div>
+          <div class="col-sm">50%</div>
+      </div>  
+
+      <div class="row">
+          <div class="col-md">33.33%</div>
+          <div class="col-md">33.33%</div>
+          <div class="col-md">33.33%</div>
+      </div>  
+
+      <div class="row">
+          <div class="col-lg">25%</div>
+          <div class="col-lg">25%</div>
+          <div class="col-lg">25%</div>
+          <div class="col-lg">25%</div>
+      </div>     
+
+
+
+      <div class="row row-cols-2">
+          <div class="col-xl">25%</div>
+          <div class="col-xl">25%</div>
+          <div class="col-xl">25%</div>
+          <div class="col-xl">25%</div>
+      </div>  
+
+      <!--:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+
+
+      row
+      col-[sm|md|lg|xl|xxl]-[1~12]
+
+
+
+
+      <div class="container-fluid mt-3">
+          <h1>Mix and Match</h1>
+          <p>Resize the browser window to see the effect.</p> 
+          <p>This example demonstrates a 50%/50% split on extra small devices and 75%/25% split on larger devices.</p>      
+          <div class="container-fluid">     
+          <div class="row">
+              <div class="col-6 col-sm-9 bg-success">col-6 col-sm-9</div>
+              <div class="col-6 col-sm-3 bg-warning">col-6 col-sm-3</div>
+          </div>
+          </div>
+          <br>
+          <p>This example demonstrates a 58%/42% split on extra small, small and medium devices and 66.3%/33.3% split on large and xlarge devices.</p>      
+          <div class="container-fluid">     
+          <div class="row">
+              <div class="col-7 col-lg-8 bg-success">col-7 col-lg-8</div>
+              <div class="col-5 col-lg-4 bg-warning">col-5 col-lg-4</div>
+          </div>
+          </div>
+          <br>
+          <p>This example demonstrates a 25%/75% split on small devices, a 50%/50% split on medium devices, and a 33%/66% split on large and xlarge devices. On extra small devices, it will automatically stack (100%).</p>      
+          <div class="container-fluid">     
+          <div class="row">
+              <div class="col-sm-3 col-md-6 col-lg-4 bg-success">col-sm-3 col-md-6 col-lg-4</div>
+              <div class="col-sm-9 col-md-6 col-lg-8 bg-warning">col-sm-9 col-md-6 col-lg-8</div>
+          </div>
+          </div>
+          </div>

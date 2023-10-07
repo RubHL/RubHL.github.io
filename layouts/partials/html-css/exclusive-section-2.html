@@ -1,0 +1,145 @@
+<style>
+#display{
+    display: block;
+}
+
+div#block_sin_contendio{
+    background-color: #fc3; /*💡 No se ve el fondo porque el Div no tiene altura */
+    border: 3px dotted blue;  /*💡 Con border comprobamos que existe pero no tiene altura*/
+    
+    cursor: pointer;     
+}   
+
+.boxe{
+    background-color: #fc3;
+    border: 3px solid blue;  
+    
+    cursor: pointer;
+}
+    .dimensiones{
+        width: 300px;
+        height: 200px;
+    }
+
+.display-group{
+    background-color: rgb(111, 220, 237); 
+    margin: auto;
+    width: 500px;
+}
+#seleccionado {
+    background-color: lightgray !important;
+}
+
+.izq, .der{ 
+    display: inline-block;
+    width: 49%;
+}
+</style>
+
+<div class="display-group">
+<label class="display"> <input type="radio" name="display-group" value="option1" onclick="cambiarDisplay('block', this)">Display: BLOCK</label>
+<label class="display"> <input type="radio" name="display-group" value="option2" onclick="cambiarDisplay('inline-block', this)">Display: INLINE - BLOCK</label>
+<label class="display"> <input type="radio" name="display-group" value="option3" onclick="cambiarDisplay('inline', this)">Display: INLINE</label>
+<div>
+    <label class="margenes"> <input type="checkbox" name="otro-group" value="option1" onclick="establecerMargin(this)">Marginar (60px)</label>
+</div>
+
+<div class="izq">
+    <p>Medidas absolutas</p>
+    <label class="medidas-absolutas"> <input type="radio" name="medidas-absolutas-group" value="option1" onclick="establecerMargin(this)">(10cm)</label>
+    <label class="medidas-absolutas"> <input type="radio" name="medidas-absolutas-group" value="option2" onclick="establecerMargin(this)">(50pt)</label>
+</div>
+<div class="der">
+    <p>Medidas relativas</p>
+    <label class="medidas-relativas"> <input type="radio" name="medidas-relativas-group" value="option1" onclick="establecerMargin(this)">(50%)</label>
+    <label class="medidas-relativas"> <input type="radio" name="medidas-relativas-group" value="option2" onclick="establecerMargin(this)">(50vw)</label>
+    <label class="medidas-relativas"> <input type="radio" name="medidas-relativas-group" value="option3" onclick="establecerMargin(this)">(50vh)</label>
+    <label class="medidas-relativas"> <input type="radio" name="medidas-relativas-group" value="option4" onclick="establecerMargin(this)">(1.5rem)</label>
+</div>
+</div>
+
+
+<div id="block_sin_contendio" class="boxe display" onclick="selector(this)"></div> 
+<div class="boxe display" onclick="selector(this)">Defaul: block Contendio para que el div tenga altura <span style="font-weight: bold;">(Clickame y marginame)</span></div>
+<div class="boxe display" onclick="selector(this)">Defaul: block Vemos que le afectan los margenes <span style="font-weight: bold;">(Clickame y marginame)</span></div>
+<div class="boxe display" onclick="selector(this)">Defaul: block Contendio para que el div tenga altura <span style="font-weight: bold;">(Clickame y marginame)</span></div>
+<div class="boxe display" onclick="selector(this)">Defaul: block Contendio para que el div tenga altura <span style="font-weight: bold;">(Clickame y marginame)</span></div>
+<div class="boxe display" onclick="selector(this)">Defaul: block Podemos ver como los bloques se apilan ocupando el ancho disponible <span style="font-weight: bold;">(Clickame y marginame)</span></div>
+
+<script>
+
+function cambiarDisplay(displayValue, check) {
+
+    if(document.getElementById('seleccionado')){
+        let box_seleccionada = document.getElementById('seleccionado')
+        box_seleccionada.style.display = displayValue;
+        box_seleccionada.innerHTML = displayValue
+    }else{
+        check.checked = false;
+        alert('no has seleccioando elemento')  
+    }
+
+}
+
+function establecerMargin(check) { 
+
+    if(document.getElementById('seleccionado')){
+        let box_seleccionada = document.getElementById('seleccionado')
+        if (box_seleccionada.style.margin === '60px') {
+            box_seleccionada.style.margin = '0';
+        } else {
+            box_seleccionada.style.margin = '60px';
+        }
+    }else{
+        check.checked = false;
+        alert('no has seleccioando elemento')
+    }
+    
+}
+
+
+function selector(element){
+
+    const inputs = document.querySelectorAll('.display-group input');
+    inputs.forEach(radio => {   
+        inputs.checked = false;    
+    });
+
+    if(document.getElementById('seleccionado')){
+        document.getElementById('seleccionado').removeAttribute("id");
+    }
+    element.id="seleccionado"
+    const estilos = getComputedStyle(element);
+
+
+    const margen = parseInt(estilos.marginTop, 10);
+    let checkbox = document.querySelector('.margenes input[value="option1"]');
+    if( margen === 60){
+        checkbox.checked = true;
+    }else{
+        checkbox.checked = false;
+    }
+
+    checkbox = document.querySelector('.display input[value="option1"]');
+    if(estilos.display === 'block'){
+        checkbox.checked = true;
+    }else{
+        checkbox.checked = false;
+    }
+
+    checkbox = document.querySelector('.display input[value="option2"]');
+    if(estilos.display === 'inline-block'){
+        checkbox.checked = true;
+    }else{
+        checkbox.checked = false;
+    }
+
+    checkbox = document.querySelector('.display input[value="option3"]');
+    if(estilos.display === 'inline'){
+        checkbox.checked = true;
+    }else{
+        checkbox.checked = false;
+    }
+
+}
+</script>

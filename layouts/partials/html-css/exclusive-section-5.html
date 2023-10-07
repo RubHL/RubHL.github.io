@@ -1,0 +1,64 @@
+<h2 style="text-align: center;">Stacking context</h2>  
+<style>
+    /*3️⃣ STACKING CONTEXT ============================================================*/
+    
+    /* Orden del stacking contex (de delante a atrás):
+            1º Elementos posiconados con un z-index de 1 o más (si estan empatados, lo determina el orden html)
+            2º Elementos posiciondos sin z-index (z-index:auto)
+            3º Elementos no posicionados (ordel del html)
+            4º Elementos con z-index negativo  */
+    
+        
+    div.cajones{
+        width: 100px;
+        height: 100px;
+    }
+
+    div#cajon-1{
+        background-color: lightcoral;
+        position: relative; /* <- 2. Añadir esto hará que se posicione por encima del contenedor porque es un elemento posiconado: 2º */
+        z-index: 1; /* <- 5.  Para desigualar cajon 1 con el contendor, ponemos un z-index para ponernos por delante: 1º */
+    }   
+
+    
+    div#contenedor{
+        background-color: gray;
+        margin-top: -30px; /* <- 1. Solo con esto se pondria por delante de cajon 1 debio al orden del html: 3º */ 
+        position: relative; /* <- 4. Añadimos un position: 2º para ponernos por delante de cajon 2 */
+        opacity: 1; /* <- 8. no pasaría nada */
+        opacity: 0.99; /* <- 10. existen propiedades que al ponerlas hace que se afecte exclusivamente al contexto del contenedor, volviendose "hermetico" haceindo que 
+                            aunque el titulo sea: 1º, estará por debajo de cajon-1 */
+    }
+        /* 💡 cada caja tiene un contexto de apilamiento interno */
+        #titulo_intero{
+            background-color: aqua;
+            position: relative; /* <- 7. al poner esto se pone por encima del texto: 2º */
+            z-index: 10; /* <- 9. aunque este dentro del contexto del contendor, se pondra por encima de cajon 1: 1º*/
+            opacity: 0.99; /* <- 11 La solucion seria quitar el opacity del contenedor y poner esa propiedad directamenten en el elemento y no en el contenedor */
+        }
+        div#contenedor p{
+            margin-top: -30px; /* <- 6. al poner esto se pone por encima del titulo: 3º */ 
+        }
+
+    div#cajon-2{
+        background-color: lightgreen;
+        margin-top: -40px; /* <- 3. Por orden de html tiene prioridad: 3º  pero no afecta al contenido de contenedor */
+    }
+    div#cajon-3{
+        background-color: lightseagreen;
+    }
+</style>
+
+<div class="cajones" id="cajon-1">caja 1</div>
+
+<div id="contenedor">
+    <h3 id="titulo_intero">titulo</h3>
+    <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+        Rem quia, architecto, natus laboriosam rerum doloremque recusandae odit nihil consequuntur 
+        praesentium consequatur adipisci facilis optio veritatis dicta ratione fugiat omnis autem.
+    </p>
+</div>
+
+<div class="cajones" id="cajon-2">caja 2</div>
+<div class="cajones" id="cajon-3">caja 3</div>

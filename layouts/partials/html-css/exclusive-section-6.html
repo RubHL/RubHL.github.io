@@ -1,0 +1,198 @@
+<h2 style="text-align: center;">Position</h2>
+<style>
+    div.boxer{
+        width: 100px;
+        height: 100px;
+    }
+    
+    div.box-1{
+    background-color: lightcoral;
+    
+    /*position: static; por defecto */
+    
+        position: relative; 
+    /*    - 🟥 sigue ocupando el espacio que le pertencecía.
+        - Se desplaza desde su posicion original 
+        - El punto de referencia para el desplazamiento es la esquina superior derecha de la caja */
+            left: 80px;
+        /*  right: -80px <- si existe left, right se ignora */ 
+            top: 50px;
+        /* bottom: -50px <- si existe top, bottom se ignora */
+    
+        z-index: 1; /*auto por defecto, en funcion del orden del html*/
+    
+    } 
+    
+    div.box-2{
+    background-color: lightgreen;
+    position: relative; 
+        /* Stacking context:
+                - si box-1 tiene position relative y box 2 no, el orden lo determina el html
+                - si ambos tienen position relative, el orden lo determina la casacada de css
+                - si ambos tienen position relative, lo determina quien tenga mayor z-index */
+    } 
+    
+    
+    div#box-3{
+    background-color: lightsalmon;
+    /* width: 100px;
+        height: 100px; */
+        position: absolute; /* <- al poner position:absolute observa que si no ponemos medidas, el div pierde el 🧱 y sus medidas pasa a ser lo que ocupe el contenido 
+        - 💢 deja de ocupar el espacio que le pertencecía.
+        - Se desplaza desde la esquina superior derecha del primer elemento padre,abuelo,etc que encuentre con un position, si no tiene, será el elemento padre body. 
+        - El punto de referencia para el desplazamiento es la esquina superior derecha de la caja */
+        top: 0px;
+    } 
+    
+    
+    /* -------------------------- */
+    
+    div#contenedor-box{
+        background-color: gray;
+        border: 1px solid black;
+        width: 300px;
+        height: 300px;
+    
+        /*si no tiene algún position, da igual cual, la caja de abajo seguira siendo absolute respecto al body */
+        position: sticky;
+        position: absolute;
+        position: relative; 
+    }
+    
+        div#box-4{
+        background-color: lightpink;
+            width: 100px;
+            height: 100px;
+    
+            position: absolute; /* <- aunque tenga un padre, sera absolute respecto a body si el contenedor padre no tiene algun tipo de position 
+            left: 280px; <- podria salirse del contenedor sin problemas */
+            top:0px
+        }
+    
+    
+    div#caja-fija{
+    background-color: lightskyblue;
+    /* width: 100%;
+        height: 10px; */
+        position: fixed; /* <- al poner position:fixed observa que si no ponemos medidas, el div pierde el 🧱 y sus medidas pasa a ser lo que ocupe el contenido */
+    /*    - 💢 deja de ocupar el espacio que le pertencecía.
+        - Se desplaza desde la esquina superior derecha del body 
+        - El punto de referencia para el desplazamiento es la esquina superior derecha de la caja 
+        - Se encuentra desfasado, se usa por temas de mantenimiento */
+        
+        top: 0px;
+        right: 0px;
+    } 
+    
+    
+    a#link-absolute{
+        background-color: lime;
+    
+        position: fixed;
+        position: absolute;
+        margin-left: 700px; /* <- aunque link sea un elemento ➖ , acepta medidas y margenes al tener position absolute o fixed*/
+        margin-bottom: 30px;
+        width: 300px; 
+    }
+    
+    div#caja-sticky{
+    background-color: lightseagreen;
+        width: 10%;
+        margin-left: 1050px;
+    
+        position: sticky; /* <- al poner position:sticky, el div NO pierde el 🧱 */
+    /*    - 💢 deja de ocupar el espacio que le pertencecía.
+        - Se desplaza desde la esquina superior derecha del primer elemento padre,abuelo,etc que encuentre con un position, si no tiene, será el elemento padre body. 
+        - El punto de referencia para el desplazamiento es la esquina superior derecha de la caja 
+        - El contenido es solo pegaoso en funcion de lo alto del contendor padre*/
+        
+        top: 0px; /* <- indica en que posicion del html empezará a comportarse como fixed ("se pega") */
+    } 
+    
+    div#contenedor-sticky{
+        background-color: hotpink;
+        height: 300px; /* el alto es fundamental, ten en cuenta que el alto tambien lo establece el contenido*/
+    }
+        div#pegajoso{
+            position: sticky; /* el contenido es solo pegaoso en funcion de lo alto del contendor */
+            top: 0;
+        }
+    
+    div#contenedor-sticky2{
+        background-color: rgb(253, 136, 194);
+    
+        /* El alto tambien lo puede establecer el contenido
+    
+        overflow: hidden; <- hace que no funcion el sticky */
+    }
+        div#pegajoso2{
+            position: sticky; /* el contenido es solo pegaoso en funcion de lo alto del contendor */
+            top: 0;
+        }
+    
+    /* -------------------------- */
+    
+    div#padre{
+        background-color: gray;
+        width: 200px;
+        height: 200px;
+    
+    /*z-index: 99999; <- el padre JAMAS se pone por delante del hijo */
+    /*z-index: 0; <- si el hijo ya tiene un z-index, poenr un z-index al padre unque sea de 0, hara que no funcione*/
+    z-index: auto; /* <- (innecesario) este si deja ponerlo aunque el hijo tengo un z-index y seguira funcionado */
+    }
+        div#hijo{
+            background-color: teal;
+            width: 100px;
+            height: 100px;
+    
+            position: relative;
+            left: 170px;
+    
+            z-index: -1; /* es siempre el hijo el que se pone detras del padre */
+        }
+
+</style>
+
+
+
+<h2>POSITION  <button><a href="#">ejercicios</a></button></h2>
+
+<div class="boxer box-1">caja-1: Relativo al espacio que ocupa</div> <!--el orden influye en el z-index-->
+<div class="boxer box-2">caja-2: simple</div>
+<div id="box-3">caja-3: Abslouta respecto al body</div>
+
+<div id="contenedor-box">
+    <div>
+        <div> <!-- no importa cuantos div haya entre medias-->
+            <div id="box-4">caja-4: Abslouta respecto al contendor</div>
+        </div>
+    </div>
+</div>
+
+<div id="caja-fija">caja fixed</div>
+
+<a href="#" id="link-absolute">link es un elemento en linea pero con absolute (o con fixed) se tranforma en un "bloque flotante"pudiendo aceptar medidas y margenes</a>
+
+<div id="caja-sticky">esto es pegajoso!</div>
+
+<div id="contenedor-sticky">
+    <div id="pegajoso">contenido pegajoso!</div>
+</div>
+
+<div id="contenedor-sticky2">
+    <div id="pegajoso2">PEGADO!</div>
+    <pre>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    Ipsum eius, ex odio ipsam esse quam amet ab, id beatae pariatur voluptas quis facere 
+    vel voluptatem corporis accusantium exercitationem enim iure.
+    <br>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    Ipsum eius, ex odio ipsam esse quam amet ab, id beatae pariatur voluptas quis facere 
+    vel voluptatem corporis accusantium exercitationem enim iure.
+    </pre>
+</div>
+
+<div id="padre">
+    <div id="hijo">blablabla</div>
+</div>

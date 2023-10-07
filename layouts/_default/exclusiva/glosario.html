@@ -1,0 +1,308 @@
+
+{{ define "main" }}
+
+    <style> /*MARCO GENERAL*/
+        body{
+            background-color: rgb(66, 66, 66);
+            width: max-content
+        }
+        .container_main {
+            display: flex;
+            /* width: max-content */
+        }
+    </style>
+
+    <style> /*COLUMNA*/
+        .columna {
+            font-size: 24px;
+            /* background-color: #ccc; */
+            margin-left: 5px;
+            margin-right: 5px;
+            /* padding: 0 10px; */
+            display: flex; 
+            /* align-items: stretch; */
+            /* justify-content: center;  */
+
+
+            color: #fff;
+            /*
+            margin: auto;
+            background: radial-gradient(#282727, #476257);
+            padding: 1em;
+            width: 700px;
+            height: 350px;
+            display: flex;
+            */
+            font-family: "VT323", monospace;
+            letter-spacing: 1.5px;
+            /*
+            align-items: center;
+            justify-content: center;
+            */
+            backdrop-filter: blur(7.5px);
+            -webkit-backdrop-filter: blur(7.5px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            
+
+            /* background: rgba(168, 158, 158, 0.358);
+            box-shadow: 0 8px 32px 0 rgba(31, 200, 87, 0.37); */
+        }
+
+
+        
+        button {      
+            background-color: black;
+            border: 1px double #00c5e2;
+            padding: 5px;
+            font-size: 16px;
+            cursor: pointer;     
+        }
+        button:hover {      
+            background-color: #00c5e2;
+            box-shadow: -7px 5px 20px 7px rgba(0, 197, 226, 0.5)
+        }
+    </style>
+
+    <style>/* ENCABEZADO DE COLUMNA*/
+        .lenguaje{
+            text-align: center;
+            width: 470px;
+        }
+        .lenguaje h2{
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .Cabecera{
+            background-size: cover; 
+            color: white;
+            height:135px;
+        }
+        .Degradado{
+            background: linear-gradient(90deg, rgba(0,0,0,0) 5%, rgba(8, 8, 8, 0.70) 50%, rgba(0,0,0,0) 95%);
+            overflow: hidden;
+            
+            height:inherit; width: 100%;
+
+            position: relative;
+        }
+
+        .Degradado div{
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0px;
+        }
+
+        .Cabecera  img{
+            margin: 10px 0px 0px 0px;
+        }
+        .Cabecera   p{
+            margin: 0px 0px 15px 0px;
+        }
+    </style>
+
+    <style>
+        #Java{
+            background-image: url(img/java.png);
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
+        table{
+            text-align: center;
+            margin: auto;
+
+            width: 95%;
+            min-height: 500px;
+            
+        }
+        th,td{
+            font-size: 13px;
+        }
+
+        pre{
+            font-size: 13px;
+            text-align: left;
+            width: 100%;
+
+            overflow: overlay;
+
+            white-space: pre-wrap;       /* Since CSS 2.1 */
+            white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+
+            background: rgba(168, 158, 158, 0.358);
+        }
+    </style>
+
+    <style> /* TARJETAS */
+        .card_effect {
+            background-image: url("img/Anexo/fondo.jpg");
+            background-size: contain; 
+            background-position-y: bottom;
+
+            border: 2px double #00c5e2;
+            border-bottom: 0px;
+            height: 400px;  /*  ¿zoom? */
+
+            position: relative;
+            overflow: hidden; /* Para recortar el degradado */
+
+            box-shadow: inset 0 0 50px rgba(0, 197, 226, 0.5);
+        }    
+
+        /* 
+        .code{
+            white-space: pre-line;
+        } 
+        */
+
+        .carrusel-images {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            /* width: 300%;  */
+            height: 100%;
+
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .carrusel-images img {           
+            width: calc(100% / 3);  /* height: 100%; */ 
+            object-fit: contain;
+            padding: 10px 0;
+        }
+        
+        .legend{
+            position: absolute;
+            top: 70%;
+            left: 0;
+            /* transform: translateY(-50%); */
+            font-size: 1em;
+            border: none;
+            background: rgba(245, 245, 245, 0.212);
+            cursor: pointer;
+            z-index: 1;
+            
+        }
+        .legend div{
+            border: 2px double #00c5e2;
+            height: 28px;
+            font-size: 16px;
+            font-family: "VT323", monospace;
+            letter-spacing: 1.5px;
+            color: black;
+        }
+
+        .legend div img{
+            height: inherit;
+            filter: brightness(0%);
+
+        }
+
+        .legend div.active {
+            background-color: #00c5e2;                                 
+        }
+
+        .card_effect::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px; /* Altura del degradado */
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #000000f2 89%);
+        }
+
+
+        .no_carrusel img{
+            height: 100%;
+            object-fit: scale-down;
+        }
+        img.ajustes{
+            width: -webkit-fill-available;
+        }
+    </style>
+
+    <section class="container_main">
+        {{ partial "glosario/exclusive-sidebar.html" . }}
+
+        {{ partial "glosario/exclusive-code-java.html" . }}
+        {{ partial "glosario/exclusive-code-javascript.html" . }}
+        {{ partial "glosario/exclusive-code-typescript.html" . }}
+        {{ partial "glosario/exclusive-code-php.html" . }}
+    </section>
+
+    <script> // CAMBIAR COLUMNAS ==================================
+        
+        const avanzarBotones = document.querySelectorAll('.avanzar');
+        const retrocederBotones = document.querySelectorAll('.retroceder');
+    
+        avanzarBotones.forEach(boton => {
+            boton.addEventListener('click', swapDivs);
+        });
+    
+        retrocederBotones.forEach(boton => {
+            boton.addEventListener('click', swapDivs); 
+        });
+    
+        function swapDivs(e) {
+            const current_Columna = e.target.parentNode;
+            const tabla = current_Columna.parentNode;
+            const array_Columnas = Array.from(tabla.children);
+            const currentIndex = array_Columnas.indexOf(current_Columna);
+            
+                if (e.target.classList.contains('avanzar') && currentIndex < array_Columnas.length - 1) {
+                    const nextBox = array_Columnas[currentIndex + 1];
+                    tabla.insertBefore(nextBox, current_Columna);
+                } else if (e.target.classList.contains('retroceder') && currentIndex > 1) {
+                    const prevBox = array_Columnas[currentIndex - 1];
+                    tabla.insertBefore(current_Columna, prevBox);
+                }
+        }
+    </script>
+    
+    <script> //CARRUSEL ==================================
+        const carrusel_ImagesList = document.querySelectorAll('.carrusel-images');
+    
+        carrusel_ImagesList.forEach((carrusel_Images) => {
+            let counter = 0;
+            var size = carrusel_Images.children[0].clientWidth;
+            // size = 296
+            size = 466
+    
+            console.log('->'+ size)
+            var legendItems = carrusel_Images.parentElement.querySelector('.legend').querySelectorAll('div');
+    
+            legendItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    counter = index;
+                    carrusel_Images.style.transform = `translateX(-${counter * size}px)`;
+    
+                    legendItems.forEach((item) => {
+                        item.classList.remove('active');
+                    });
+                    // Agregar la clase "active" al elemento "legend" que se acaba de pulsar
+                    item.classList.add('active');
+                });
+            });
+        });
+    
+        //---------------------
+        const elementos = document.querySelectorAll('.carrusel-images');
+        elementos.forEach(elemento => {
+            elemento.style.width = elemento.dataset.num * 100 +'%';
+        });
+    </script>
+    
+    <!-- Codigo colores -->
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    
+{{ end }}

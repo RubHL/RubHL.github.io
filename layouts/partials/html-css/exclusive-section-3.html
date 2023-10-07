@@ -1,0 +1,96 @@
+<h2 style="text-align: center;">🐛BUGS🐛</h2>
+<style>
+div#contenedor{
+    outline: 3px solid red; 
+/*  border: 3px solid blue;  <-- Border, al ocupar espacio [🔴], solucionaria el problema de solapamiento de margenes */
+
+
+    background-color: grey; 
+
+    /* Formas de solucionar el solapamiento de margenes 💡🐛
+        padding: 1px; 
+        border: 1px solid black; 
+        overflow: hidden;
+    */          
+    
+}
+div#contenedor 
+div#block_outline{
+    display: block;
+    background-color: Gold;
+    
+    width: 300px;
+    height: 100px;
+
+    outline: 3px solid red;     
+    margin: 60px; /* <-- 💡🐛[🧱]Solapamiento de margenes, (al parecer solo ocurre con block) */
+}
+</style>
+<div id="contenedor"> 
+    <span id="WARNING-1" style="color: red;">💡🐛 Solapamiento de margenes, (Solo ocurre con [🧱]Block), Observa que al poner texto, (el cual ocupa espacio), el margen solpado lo detecta </span><button class="ocultar">Ocultar</button> 
+    <div id="block_outline" class="display" onclick="toggleBorde()" style="cursor: pointer;">Caja con outlines, vemos que sus margenes solapan a su contendor, CLICKAME para sustituir el outline del padre por un border, para solucionarlo, recuerda que hay mas trucos para ello, overflow, padding de 0, etc</div>
+</div>
+
+    <div id="WARNING-2" style="background-color: rgba(252, 71, 47, 0.671); position: absolute; right: 0; width: 500px; ">
+        Solapamiento de solapamiento, se debe al top-margin
+    </div>
+
+<div id="contenedor"> 
+    <div id="block_outline" class="display">Hermano respeta al hermano pero no al padre</div>
+    <div id="block_outline" class="display">Observa que el solapamiento se da solo sobre el padre, sin embargo sus hermanos, al estar al mismo nivel, siempre los respetara</div>
+    <div id="block_outline" class="display">Hermano respeta al hermano pero no al padre</div>
+</div>
+
+<script>
+
+    var bordeAgregado = false;
+
+    function toggleBorde() {
+        var elemento = document.getElementById('contenedor');
+
+        if (bordeAgregado) {
+            elemento.style.border = "none";
+            bordeAgregado = false;
+        } else {
+            elemento.style.border = "3px solid black";
+            bordeAgregado = true;
+        }
+    }
+
+    const targetElement = document.querySelector('.ocultar');
+    const siblingElement = targetElement.previousElementSibling;
+    targetElement.style.position = 'absolute';
+    let isHidden = false;
+
+    targetElement.addEventListener('click', function() {
+        if (isHidden) {
+            // Si el elemento está oculto, mostrarlo y actualizar el estado
+            siblingElement.style.display = 'inline';
+            isHidden = false;
+            targetElement.textContent = 'Ocultar'; // Actualiza el contenido de targetElement
+        } else {
+            // Si el elemento está visible, ocultarlo y actualizar el estado
+            siblingElement.style.display = 'none';
+            isHidden = true;
+            targetElement.textContent = 'Mostrar'; // Actualiza el contenido de targetElement
+        }
+    });
+</script>
+
+<div style="border: px solid black; background-color: grey;"> <!-- 💡🐛[🧱] No hay solapamiento de margenes porque se usa border-->
+    Contenido en un padre
+    <div class="boxe display dimensiones" onclick="toggleMargin(this)">Contendor con Outline,<br> Observa que los elementos tienden a ir arriba a la izquierda, en la coordenada 0.0<br><span style="color:red; font-size: bold;">¡CLICKAME Y MARGINAME!</span></div>
+    <div class="boxe display" onclick="toggleMargin(this)">Contendor con Outline y sin dimensiones establecidas<span style="color:red; font-size: bold;">¡CLICKAME Y MARGINAME!</span></div>
+    <div class="boxe display dimensiones" onclick="toggleMargin(this)">Contendor con Outline y sin dimensiones establecidas<span style="color:red; font-size: bold;">¡CLICKAME Y MARGINAME!</span></div>
+    <div class="boxe display" onclick="toggleMargin(this)">Contendor con Outline,<br> Observa que los elementos tienden a ir arriba a la izquierda, en la coordenada 0.0 <br><span style="color:red; font-size: bold;">¡CLICKAME Y MARGINAME!</span></div>
+</div>
+
+<script>
+    function toggleMargin(element) { 
+        if (element.style.margin === '60px') {
+            element.style.margin = '0';
+        } else {
+            element.style.margin = '60px';
+        }
+    }
+</script>

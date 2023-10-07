@@ -1,0 +1,8 @@
+baseURL = 'https://GuiaProgramacion.org/'
+languageCode = 'en-us'
+title = 'Guia de programación'
+theme = 'ananke'
+
+disqusShortname = 'YOURSHORTNAME'
+[params]
+    commentoEnable = true

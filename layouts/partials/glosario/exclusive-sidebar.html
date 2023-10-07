@@ -1,0 +1,215 @@
+<style>
+    #aside{
+        z-index: 3;
+        position: sticky;
+        left: 0;
+        /* border: 1px solid red; */
+        display: flex;
+    }
+    #aside #Rama{
+        width: 30px;
+    }
+
+        #aside #Rama #POO{
+            background-color: black;
+            position: relative;
+            top: 640px;
+            height: 625px;
+            border: 1px solid #00c5e2;
+        }
+        #aside #Rama #tipos_datos{
+            background-color: black;
+            position: relative;
+            top: 867px;
+            height: 2750px;
+            border: 1px solid #00c5e2;
+        }
+        #aside #Rama #bucles{
+            background-color: rgb(64, 255, 0);
+            position: relative;
+            top: 773px;
+            height: 1484px;
+            
+        }   
+
+            #aside #Rama #POO div,
+            #aside #Rama #tipos_datos div,
+            #aside #Rama  #bucles div{
+                position: sticky;
+                top: 0;
+                /* background-color: red; */
+                height: 50px;
+            }
+
+           
+            #aside #Rama #POO div{
+                height: 160px;
+            }
+
+            #aside #Rama #tipos_datos div{
+                height: 190px;
+            }
+            
+            
+            #aside #Rama #POO span,
+            #aside #Rama #tipos_datos span,
+            #aside #Rama #bucles span{
+                font-family: "VT323", monospace;
+                color: #00c5e2;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                
+                position: absolute; /* Usar posición absoluta */
+                bottom: 0; /* Alinear el texto en la parte inferior */
+                left: 90%; /* Centrar el texto horizontalmente */
+                transform: translateX(-50%); /* Corregir la posición horizontal */
+                text-align: center; /* Alineación del texto vertical */
+                transform: rotate(-90deg); /* Rotación del texto en -90 grados (sentido antihorario) */
+                transform-origin: left bottom; /* Punto de origen de la rotación */
+                white-space: nowrap; /* Evita que el texto se ajuste automáticamente */
+            }   
+     
+       
+           
+
+    #aside #Rol{
+        width: 30px;
+    }
+    #aside #Rol .conten{
+        background-color: #00c5e2;
+        height: 200px;
+        position: relative;
+        top: 642px;
+        margin-bottom: 226px;
+    }
+
+        #aside #Rol .conten div{
+            position: sticky;
+            top: 0;
+            /* background-color: #00c5e2; */
+            height: 50px;
+        }
+        #aside #Rol .conten  div span{
+
+            font-family: "VT323", monospace;
+            color: black;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            
+            position: absolute; /* Usar posición absoluta */
+            bottom: 0; /* Alinear el texto en la parte inferior */
+            left: 80%; /* Centrar el texto horizontalmente */
+            transform: translateX(-50%); /* Corregir la posición horizontal */
+            text-align: center; /* Alineación del texto vertical */
+            transform: rotate(-90deg); /* Rotación del texto en -90 grados (sentido antihorario) */
+            transform-origin: left bottom; /* Punto de origen de la rotación */
+            white-space: nowrap; /* Evita que el texto se ajuste automáticamente */
+        }
+            #clases div{
+                height: 67px !important;
+            }
+            #funciones div{
+                height: 95px !important;
+            }
+            #constantes div{
+                height: 107px !important;
+            }
+            #numericos div{
+                height: 93px !important;
+            }
+            #strings div{
+                height: 69px !important;
+            }
+            #otras_var div{
+                height: 113px !important;
+            }
+</style>
+<style>
+    .x::before,
+    .x::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #00c5e2;
+    box-shadow: 0px 0px 21px 1px rgb(0 197 226 / 58%);
+    top: 48%;
+    left: 0;
+    }
+
+    .x::before {
+    transform: rotate(45deg);
+    }
+
+    .x::after {
+    transform: rotate(-45deg);
+    }
+</style>
+
+<div id="aside">
+    <div id="Rama">
+        <div id="POO">
+            <div>
+                <span>POO y funciones</span>
+            </div>
+        </div>
+        <div id="tipos_datos">
+            <div>
+                <span>Tipos de Variables</span>
+            </div>
+        </div>
+        <div id="bucles">
+            <div>
+                <span>Bucles</span>
+            </div>     
+        </div>
+    </div>
+    <div id="Rol">     
+        <div class="conten" id="clases">
+            <div>
+                <span>Clases</span>
+            </div>
+        </div>
+        <div class="conten" id="funciones">
+            <div>
+                <span>Funciones</span>
+            </div>          
+        </div>          
+        <div class="conten" id="constantes">
+            <div>
+                <span>Constantes</span>
+            </div>
+        </div>
+        <div class="conten" id="numericos">
+            <div>
+                <span>Numericos</span>
+            </div>     
+        </div>
+        <div class="conten" id="strings">
+            <div>
+                <span>String</span>
+            </div>
+        </div> 
+        <div class="conten">
+            <div>
+                <span>Arrays</span>
+            </div>
+        </div> 
+        <div class="conten"  id="otras_var">
+            <div>
+                <span>Otras variables</span>
+            </div>
+        </div> 
+        
+        <div class="conten">
+            <div>
+                <span id="print">Print</span>
+            </div>
+        </div>
+        <div class="conten">
+            <div>
+                <span>Otras variables</span>
+            </div>
+        </div>              
+    </div>
+</div>

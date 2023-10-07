@@ -1,0 +1,167 @@
+{{ define "main" }}
+
+  <style>
+  .desplegable {
+
+    width: 95%;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: lightgray;
+    height: 50px;
+    cursor: pointer;
+    overflow: hidden; /* Para ocultar el contenido que se desborda */
+    transition: height 0.9s ease-in-out; /* Transición en max-height */
+
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; */
+    
+  }
+  .section{
+    border: 3px blue solid;
+    background-color: lightgray;
+    height: 50px;
+    cursor: pointer;
+    overflow: hidden; /* Para ocultar el contenido que se desborda */
+    transition: height 0.9s ease-in-out; /* Transición en max-height */
+    margin-top: 5px;
+    margin-bottom: 5px;
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; */
+  }
+  h2,h3{
+    text-align: center;
+    margin: auto;
+    background-color: gray;
+  }
+
+  h2:hover, h3:hover{
+    background-color: lightslategray;
+  }
+  </style>
+
+<style>
+  /* INSTAGRAM */
+  .posts{
+      display: flex;
+  }
+  .post{
+      width: 300px;
+      display: inline-block;
+      margin-left: 10px;
+      margin-right: 10px;
+  }
+</style>
+
+
+  <section class="desplegable">
+    <h2 onclick="toggleExpand(event)">Formas</h2>
+    <div style="display: none;">
+      <section style="border: 3px red solid; width: 80%; margin: auto;" class="section">
+        <h3 onclick="toggleExpand(event)">Teoría</h3>
+        <div style="display: none;">{{ partial "html-css/exclusive-section-1.html" . }}</div>
+      </section>
+
+      <section id="Display_type" class="section">
+        <h3 onclick="toggleExpand(event)">Display</h3>
+        <div style="display: none;">{{ partial "html-css/exclusive-section-2.html" . }}</div>
+      </section>
+
+      <section id="Bugs" class="section">
+        <h3 onclick="toggleExpand(event)">Caracteristicas de los bloques</h3>
+        <div style="display: none;">{{ partial "html-css/exclusive-section-3.html" . }}</div>
+      </section>
+    </div>
+  </section>
+
+  <section class="desplegable">
+    <h2 onclick="toggleExpand(event)">Maquetacion</h2>
+    <div style="display: none;">
+      <section id="propiedades" class="section"> 
+          <h2 onclick="toggleExpand(event)">Propiedades</h2>
+          <div style="display: none;">{{ partial "html-css/exclusive-section-4-1.html" . }}</div>
+      </section> 
+
+      <section id="propiedades" class="section"> 
+          <h2 onclick="toggleExpand(event)">Centrar contenido</h2>  
+          <div style="display: none;">{{ partial "html-css/exclusive-section-4-2.html" . }}</div>    
+      </section>
+
+      <section id="Stacking_context" class="section">
+        <h2 onclick="toggleExpand(event)">Stacking content</h2>  
+        <div style="display: none;">{{ partial "html-css/exclusive-section-5.html" . }}</div>   
+      </section>
+
+      <section id="Position" class="section">
+        <h2 onclick="toggleExpand(event)">Position</h2>  
+        <div style="display: none;">{{ partial "html-css/exclusive-section-6.html" . }}</div> 
+      </section>
+    </div>
+  </section>
+
+
+  <section class="desplegable">
+    <h2 onclick="toggleExpand(event)">Float</h2>
+    <div style="display: none;">
+      <section id="floats" class="section">
+        <h2 onclick="toggleExpand(event)">float</h2> 
+        <div style="display: none;">{{ partial "html-css/exclusive-section-7.html" . }}</div>       
+      </section>    
+        
+      <section id="float_bug" class="section">
+        <h2 onclick="toggleExpand(event)">float_bug</h2> 
+        <div style="display: none;">{{ partial "html-css/exclusive-section-8.html" . }}</div> 
+      </section>
+    </div>
+  </section>  
+  
+  <section class="desplegable">
+    <h2 onclick="toggleExpand(event)">Display</h2>
+    <div style="display: none;">
+      <section id="Gridpane" class="section">
+        <h2 onclick="toggleExpand(event)">GridPane</h2> 
+        <div style="display: none;">{{ partial "html-css/exclusive-section-9.html" . }}</div>  
+      </section>
+
+      <section id="Flexbox" class="section">
+        <h2 onclick="toggleExpand(event)">Flexbox</h2> 
+        <div style="display: none;">{{ partial "html-css/exclusive-section-10.html" . }}</div>  
+      </section>
+    </div>
+  </section>  
+
+  <section class="desplegable">
+    <h2 onclick="toggleExpand(event)">Framework</h2>
+    <div style="display: none;">
+      <section id="Boostrap" class="section">
+        <div style="display: none;">{{ partial "html-css/exclusive-section-11.html" . }}</div>   
+      </section>
+    </div>
+  </section>  
+
+  <script>
+    function toggleExpand(event) {
+      event.stopPropagation();
+
+      var parent = event.currentTarget.parentNode
+      var children = parent.querySelector('div');
+      var expanded
+  
+      if(getComputedStyle(parent).height == '50px') {
+          parent.style.height = 'auto'; /* Establece la altura en "auto" para expandir */
+          expanded = true
+      } else {
+          parent.style.height = '50px'; /* Establece la altura original */
+          expanded = false
+      }
+      
+      children.style.display = (expanded) ? 'block' : 'none'; /* Muestra u oculta los hijos */
+      
+    }
+  </script>
+
+{{ end }}

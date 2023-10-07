@@ -1,0 +1,197 @@
+
+<!-- <nav>
+        <style>
+            main{
+                border: 5px solid black;
+            }
+            nav{
+                display: flex;
+                justify-content: space-evenly;
+                background-color:black;
+                position:sticky; top:0; 
+            }  
+            nav h2{
+                display: inline;
+                margin:0px;              
+                cursor: pointer;
+            }    
+            #select{
+                border: 3px solid red !important;
+            }    
+        </style>
+    
+        <h2 style="background-color:rgb(245, 66, 66);" onclick="menu(this)">BLOCK</h2>
+        <h2 style="background-color:orange;" onclick="menu(this)">INLINE-BLOCK</h2>
+        <h2 style="background-color:rgb(73, 73, 73);"   onclick="menu(this)">INLINE</h2>
+        <h2 style="background-color:rgb(19, 147, 216);"   onclick="menu(this)">FLEX</h2>
+        <h2 style="background-color:rgb(109, 56, 21);"   onclick="menu(this)">GRID</h2>
+    
+
+        <script>
+            function menu(element) { 
+
+                if(document.getElementById('select')){
+                    document.getElementById('select').removeAttribute("id");
+                }
+                element.id="select"
+
+                const Display = document.getElementsByClassName('display');                               
+
+                for (let i = 0; i < Display.length; i++) {
+
+                    switch (element.innerHTML) {
+                        case 'BLOCK':
+                            
+                            Display[i].style.display = 'block';
+                            document.getElementById('block').style.display = 'block';
+                            document.getElementById('inline-block').style.display = 'none';
+                            document.getElementById('inline').style.display = 'none';
+
+                            document.getElementById('WARNING-1').innerHTML= '💡🐛 Solapamiento de margenes, (Solo ocurre con [🧱]Block), Observa que al poner texto, (el cual ocupa espacio), el margen solpado lo detecta '
+                            document.getElementById('WARNING-2').innerHTML= 'Solapamiento de solapamiento, se debe al top-margin'
+                        break;
+                        case 'INLINE-BLOCK':
+                        
+                            Display[i].style.display = 'inline-block';
+                            document.getElementById('block').style.display = 'none';
+                            document.getElementById('inline-block').style.display = 'block';
+                            document.getElementById('inline').style.display = 'none';
+
+                            document.getElementById('WARNING-1').innerHTML='💡🐛 No hay solapamiento de margenes, (Solo ocurre con [🧱]Block)'
+                            document.getElementById('WARNING-2').innerHTML='No se por que, el alineamiento vertical se descuadra en [➖🧱]INLINE-BLOCK'
+                        break;
+                        case 'INLINE':
+                        
+                            Display[i].style.display = 'inline';
+                            document.getElementById('block').style.display = 'none';
+                            document.getElementById('inline-block').style.display = 'none';
+                            document.getElementById('inline').style.display = 'block';
+
+                            document.getElementById('WARNING-1').innerHTML='Vemos que solo se aplican los margenes horizontales pero no los verticales'
+                            document.getElementById('WARNING-2').style.display = 'none';
+                        break;             
+                    }          
+                }
+            }
+        </script>
+    </nav> -->
+
+<pre id="block">
+    ____  _     ___   ____ _  __
+   | __ )| |   / _ \ / ___| |/ /
+   |  _ \| |  | | | | |   | ' / 
+   | |_) | |__| |_| | |___| . \ 
+   |____/|_____\___/ \____|_|\_\ Standard
+                             
+
+        ====================================================================
+       • DISPLAY: [🧱]BLOCK   
+
+           - Margin (*solo se aplica a la caja, no al contenido)
+                   ([🧱]BLOCK: funcionan los margenes horizontales y verticales ✅) 
+
+           - Outline (borde fuera de la caja, [⭕]No ocupa espacio de elemento)
+           _______________
+           - Borde ([🔴]Ocupa espacio de elemento)
+           - Padding
+           ------------
+           - width (Por defecto ocupa todo el ancho de la pantalla) {Responsive si no se fija un ancho}    
+           - Contenido (💡 Las cajas vacias tendrán una altura de 0 y no se verán)
+           - height 
+       ======================================================================= 
+   </pre>
+   <pre id="inline-block" style="display: none;"> 
+   ___ _   _ _     ___ _   _ _____      ____  _     ___   ____ _  __
+   |_ _| \ | | |   |_ _| \ | | ____|    | __ )| |   / _ \ / ___| |/ /
+    | ||  \| | |    | ||  \| |  _| _____|  _ \| |  | | | | |   | ' / 
+    | || |\  | |___ | || |\  | |__|_____| |_) | |__| |_| | |___| . \ 
+   |___|_| \_|_____|___|_| \_|_____|    |____/|_____\___/ \____|_|\_\ 
+               
+
+       ====================================================================
+       • DISPLAY: [➖🧱]INLINE-BLOCK 
+
+           - Margin (*solo se aplica a la caja, no al contenido)
+                   ([🧱]BLOCK: funcionan los margenes horizontales y verticales ✅) 
+                   
+           - Outline (borde fuera de la caja, [⭕]No ocupa espacio de elemento)
+           _______________
+           - Borde ([🔴]Ocupa espacio de elemento)
+           - Padding
+           ------------
+           - width (➖🧱 INLINE: Su tamaño lo determina su contenido) (Su ancho se puede modificar ✅) {Responsive, se acomodan los elementos debajo} 
+           - Contenido (💡 Las cajas vacias tendrán una altura de 0 y no se verán)
+           - height (➖🧱 INLINE: Su tamaño lo determina su contenido) (Su altura se puede modificar ✅) 
+       =======================================================================
+   </pre>
+
+   <pre id="inline" style="display: none;">         
+    ___ _   _ _     ___ _   _ _____ 
+   |_ _| \ | | |   |_ _| \ | | ____|
+    | ||  \| | |    | ||  \| |  _|  
+    | || |\  | |___ | || |\  | |___ 
+   |___|_| \_|_____|___|_| \_|_____| */
+                           
+
+       /* ====================================================================
+       • DISPLAY: [➖]INLINE 
+               
+           - Margin (*solo se aplica a la caja, no al contenido) 
+                   ([➖]INLINE: Solo funcionan los margenes horizontales❌ ) 
+                   (💡 con DISPLAY: [🌐]ABSOLUTE los elementos en linea toman forma de [🧱]BLOCK aceptando asi margenes verticales y horizontales ✅)
+
+           - Outline (borde fuera de la caja, [⭕]No ocupa espacio de elemento)
+           __________ 
+           - Borde ([🔴]Ocupa espacio de elemento)
+           - Padding
+           ----------
+           - width (➖ INLINE: Su tamaño lo determina su contenido) (Su ancho NO se puede modificar ❌) (💡 con display:absolute los elementos en linea toman forma de bloque y aceptan width) {Responsive, se acomodan los elementos debajo} 
+           - Contenido
+           - height (➖ INLINE: Su tamaño lo determina su contenido) (Su ancho NO se puede modificar ❌) (💡 con display:absolute los elementos en linea toman forma de bloque y aceptan height)
+           ----------
+       ======================================================================= */    
+   </pre>  
+   
+   <pre>
+       /* ====================================================================
+       • DISPLAY: NONE       
+   
+           - Oculta el contenido
+           - No ocupa espacio de elemento 💢
+           - Aparece en el html, por lo que navegador lo carga aunque no se vea */
+   
+       /* ======================================================================= */   
+   </pre>
+
+   <h2 style="text-align: center;">Medidas</h2>
+       <p>💡 por defecto, los navegadores tenen font-size: 16px como tamaño de fuente porque equivalen aproximadamente a los 12 puntos
+           de tamaño que se utiliza en imprenta (el cual es el tamaño al que el ojo humano está acostumbrado)</p>       
+<pre>
+Absolutas
+1px = 1/96 de 1in
+1cm = 96px/2,54
+1mm = 1/10 de 1cm
+1Q (cuarto de milimetro) = 1/40 de 1cm
+1in (inches) = 2,54cm = 96px
+1pc (picas) = 1/16 de 1in  
+1pt (puntos) = 1/72 de 1in 
+</pre>
+<pre>
+Relativas (dependen del contexto)
+
+1rem = 16px (corresponde a la medida de la "m"(en imprenta es la letra que mas ocupa) de la raiz del documento: html)
+em = font-size: x (corresponde a la medida de la "m"(en imprenta es la letra que mas ocupa) del contexto donde nos encontramos)
+% (respecto a al contenedor que lo contiene) 
+💡  width:100% (al añadir margin, la caja seguira midendo el 100%)
+   vs 
+width:auto (al añadir margin, se reajustará para no salirse)
+
+vw (viewport width)
+vh (viewport height)
+vmin
+vmax
+
+ex (altura x de la fuente del elemento)
+ch (la medida del ancho del glifo "0" de la letra del elemento)
+lh (altura de la linea del elemento)
+</pre>
