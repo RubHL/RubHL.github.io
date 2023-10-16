@@ -54,109 +54,112 @@
 
             <div class="card_effect"> 
                 <div class="carrusel-images" data-num="2">                                       
-                    <pre class="prettyprint lang-php">   
-//Superclase
-class Vehiculo{
-//Atributos/Campos
-//Los var son public por defecto, no hace falta poner public
-    private $color;
-    protected $ruedas;
-    var $motor 
+                    <pre class="prettyprint lang-php">&lt;?php
+    class Vehiculo{ //Superclase 
 
-//Este atributo/campo pertencera a la clase
-    private static $tipo_vehicuo = "Terrestre" 
+        // Atributos/Campos de Objeto
+        private $color;
+        protected $ruedas;
+        var $motor // var es public por defecto
+        // Atributos/Campos de Clase
+        private static $tipo_vehicuo = "Terrestre" 
 
-//Si no existe metodo contructor, se crea uno vacio por defecto
-//Metodo constructor (estado inicial al instanciar)
-//$this hace referencia al objeto instanciado ACTUAL
-    public function __construct($color){
-        $this->ruedas=4;
-        $this->color=$color; 
+        // Metodo constructor (estado inicial al instanciar)
+        // Si no existe metodo contructor, se crea uno vacio por defecto
+        // $this hace referencia al objeto instanciado ACTUAL
+        public function __construct($color){
+            $this->ruedas=4;
+            $this->color=$color; 
+        }
+
+        // Metodos/funciones de Objeto
+        function arrancar(){
+            echo "Arranca &lt;br&gt;"
+        }
+
+        funcion tipo_motor($motor){
+            $this->motor=$motor;
+            echo "El motor del coche es " . $this->motor . "&lt;br&gt;";
+        }
+
+        function get_color(){
+            return $this->color;
+        }
+
+        function get_ruedas(){
+            return $this->ruedas;
+        }
+
+        // Metodos/funciones de Clase
+        // Si queremos modificar un atributo de clase hay que hacerlo con un metodo de clase
+        public static function set_tipo_vehicuo($tipo_vehicuo){ 
+            self::$tipo_vehicuo = $tipo_vehicuo;
+        }
+
+        // Si queremos obtener un atributo de clase podemos hacerlo a traves del objeto o a traves de su clase
+        public static function get_tipo_vehicuo(){ 
+            return self::$tipo_vehicuo;
+        }
+
     }
 
-//Metodo/funcion
-    function arrancar(){
-        echo "Arranca &lt;br&gt;"
+    //::::::::::::::::::::::::::::::::::::::::::::::
+                                                            
+    class Coche extends Vehiculo{ // Subclase que hereda
+        
+        // Metodo constructor 
+        public function __construct($color){
+            $this->ruedas=4;
+            $this->color=$color;
+        }
+
+        // Metodos/funciones de Objeto
+        function arrancar_hijo(){
+            parent::arrancar(); // Metodo del padre
+            echo "El motor ruge como el de un coche &lt;br&gt;"
+        }
+
+        // Realizamos una sobreescritura de metodos de la clase padre pero con $motor_coche
+        funcion tipo_motor($motor_coche){
+            $this->motor=$motor_coche; // Ten en cuenta que motor es un atributo del padre
+            echo "El motor del coche es " . $this->motor . "&lt;br&gt;";
+        }
     }
-
-    funcion tipo_motor($motor){
-        $this->motor=$motor;
-        echo "El motor del coche es " . $this->motor . "&lt;br&gt;";
-    }
-
-    function get_color(){
-        return $this->color;
-    }
-
-    function get_ruedas(){
-        return $this->ruedas;
-    }
-
-//Si queremos modificar un atributo de clase hay que hacerlo con un metodo de clase
-    static function set_tipo_vehicuo($tipo_vehicuo){ 
-        return self::$tipo_vehicuo;
-    }
-
-//Si queremos obtener un atributo de clase podemos hacerlo a traves del objeto o a traves de su clase
-    function get_tipo_vehicuo(){ 
-        return self::$tipo_vehicuo;
-    }
-
-}
-                                                        
-//Subclase
-class Coche extends Vehiculo{
-
-    //Si no existe metodo contructor, se crea uno vacio por defecto
-    //Metodo constructor(estado inicial al instanciar)
-    public function __construct($color){
-        $this->ruedas=4;
-        $this->color=$color;
-        //$this hace referencia al objeto instanciado ACTUAL
-    }
-
-    //Metodo/funcion
-    function arrancar(){
-        parent::arrancar();
-        echo "El motor ruge como el de un coche &lt;br&gt;"
-    }
-
-    // Realizamos una sobreescritura de metodos pero con $motor_coche
-    funcion tipo_motor($motor_coche){
-        $this->motor=$motor_coche;
-        echo "El motor del coche es " . $this->motor . "&lt;br&gt;";
-    }
-}
-
-
-
-
-
-
+?&gt;
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                     </pre> 
-                    <pre class="prettyprint lang-php"> 
-//Instancia del objeto ===============
-include("Archivo_clase_Coche.php"); //importo la clase   
+                    <pre class="prettyprint lang-php">&lt;?php
+    include("Archivo_clase_Coche.php"); // Primero tengo que importar la clase   
 
+    // Instancia del Objeto 
+    new Coche();
+    $renault = new Coche; // No es obligatorio los paréntesis si el constructor esta vacio (en java si)
+    $mazda = new Coche("azul");
+    $seat = new Coche("verde");
 
-new Coche();
-$renault = new Coche("rojo"); //no es obligatorio los paréntesis si el constructor esta vacio (en java si)
-$mazda = new Coche("azul");
-$seat = new Coche("verde");
+    // Porpiedades de Objeto 
+    $mazda->color = "Rosa"; // Error, la propiedad es privada para que otro programador no pueda modificarlo, (abria que recurir al metodo set)
+    echo "Color : " . $mazda->color; // Si la propiedd es privada no podemos ver su atributo, (abria que recurir al metodo get)
+    echo "Color : " . $mazda->get_color(); // mazda al ser un objeto de su clase aunque este en private, tiene acceso
+    echo "Color : " . $truck->get_color(); // truck al ser un objeto de la clase hija no puede acceder el atributo color de su clase padre porque esta en private, para que pueda hacerlo tiene que estar en protected
 
-//Porpiedades de objeto ===============
-$mazda->color="Rosa"; //Error, la propiedad es privada para que otro programador no pueda modificarlo, (abria que recurir al metodo set)
-echo "Color : " . $mazda->color; //Si la propiedd es privada no podemos ver su atributo, (abria que recurir al metodo get)
-echo "Color : " . $mazda->get_color(); // mazda al ser un objeto de su clase aunque este en private, tiene acceso
-echo "Color : " . $truck->get_color(); // truck al ser un objeto de la clase hija no puede acceder el atributo color de su clase padre porque esta en private, para que pueda hacerlo tiene que estar en protected
-//Porpiedades de la clase ===============
-Vehiculo::$tipo_vehicuo = "Lo que me de la gana" //La propiedad de la clase no se puede acceder a traves del objeto, porque pertenece solo a la clase, tambien deberia ser privada para no poder manipularla
+    // Porpiedades de Clase 
+    //La propiedad de la clase no se puede acceder a traves del objeto, porque pertenece solo a la clase, tambien deberia ser privada para no poder manipularla
+    Vehiculo::$tipo_vehicuo = "Lo que me de la gana";
 
-//Metodos ===============
-$renault->arrancar();
-$renault->tipo_motor(1600)
-Vehiculo::set_tipo_vehicuo("estandar") //Los metodos de la clase, se utilizan con la clase
+    // Metodos de Objeto
+    $renault->arrancar();
+    $renault->tipo_motor(1600);
 
+    // Metodos de Clase
+    Vehiculo::set_tipo_vehicuo("estandar"); // Los metodos de la clase, se utilizan con la clase
+?&gt;
 
 
 
@@ -167,66 +170,67 @@ Vehiculo::set_tipo_vehicuo("estandar") //Los metodos de la clase, se utilizan co
                 </div>
                 <div class="legend">
                     <div class="active">Clase</div>
-                    <div>Instanciar clase</div>
+                    <div>Instancia</div>
                 </div>
             </div>
          
             <hr>
 
             <div class="card_effect"> 
-                <div class="carrusel-images" data-num="2">  
-                    <pre class="prettyprint lang-php">                          
-//Llamada a función normal =========                                                
-function mi_funcion(){
-//code
-return "resultado"; //Opcional
-}
-mi_funcion();
+                <div class="carrusel-images" data-num="1">  
+                    <pre class="prettyprint lang-php">&lt;?php                          
+    // Llamada a función                                           
+    function mi_funcion(){
+        //code
+        return "resultado"; //Opcional
+    }
+    mi_funcion();
 
-//Paso de parametro =========
-//Recuerda que el ambito local de la variable esta aislada del exterior (no como en javascript)
-function mi_funcion_con_parametros($parametro1,$parametro2){
-//code
-}
-mi_funcion_con_parametros("ejemplo_parametro","ejemplo_parametro_2");
+    // Llamada a función con paso de parámetro 
+    // Recuerda que el ambito local de la variable esta aislada del exterior (no como en javascript)
+    function mi_funcion_con_parametros($parametro1,$parametro2){
+        //code
+    }
+    mi_funcion_con_parametros("ejemplo_parametro","ejemplo_parametro_2");
 
-//Paso de parametro por defecto =========
-//Recuerda que el ambito local de la variable esta aislada del exterior (no como en javascript)
-function mi_funcion_default($parametro1,$parametro2 = true){
+    // Llamada a función con paso de parámetro por defecto 
+    // Recuerda que el ambito local de la variable esta aislada del exterior (no como en javascript)
+    function mi_funcion_default($parametro1,$parametro2 = true){
 
-$parametro1 = strtolower($parametro1);
-if($parametro2){
-$resultado = ucwords($parametro1);
-}else{
-"has modificado el parametro por defecto";
-}
-}
-mi_funcion_default("ejemplo_parametro");
-mi_funcion_default("ejemplo_parametro",false);
+        $parametro1 = strtolower($parametro1);
 
-//Paso de parametro por valor =========
-function incrementa($param){
-$param++;
-return $param;
-}
-$num = 5
-echo incrementa($num); //6
-ehco $num; //5
+        if($parametro2){
+            return ucwords($parametro1);
+        }else{
+            return "has modificado el parametro por defecto";
+        }
+    }
+    mi_funcion_default("ejemplo_parametro");
+    mi_funcion_default("ejemplo_parametro",false);
 
-//Paso de parametro por referencia =========
-function incrementa(&$param){ //Ojo al ampersand(&) 
-$param++;
-return $param;
-}
-$num = 5
-echo incrementa($num); //6
-ehco $num; //6 //Al pasarlo por referencia se mantiene
+    // Llamada a función con paso de parámetro por valor 
+    function incrementa($param){
+        $param++;
+        return $param;
+    }
+    $num = 5
+    echo incrementa($num); //6
+    ehco $num; //5
 
-//Llamada a funcion desde documento externo =========
-include("archivo.php"); //function_externa se encuentran en este archivo
-require("archivo.php"); //detiene el flujo de ejecución si no lo encuentra
-function_externa();
+    // Llamada a función con paso de parámetro por referencia
+    function incrementa(&$param){ // ampersand(&) 
+        $param++;
+        return $param;
+    }
+    $num = 5
+    echo incrementa($num); //6
+    ehco $num; //6 
 
+    //Llamada a funcion desde documento externo
+    include("archivo.php"); // function_externa se encuentran en este archivo
+    require("archivo.php"); // Al ser requerido, detiene el flujo de ejecución si no lo encuentra
+    function_externa();
+?&gt;
 
 
 
@@ -237,19 +241,19 @@ function_externa();
 
                     </pre>
 
-                    <pre class="prettyprint lang-php">   
-----
-                    </pre>
+                    <!-- <pre class="prettyprint lang-php">   
+...
+                    </pre> -->
                 </div>
                 <div class="legend">
                     <div class="active">Funciones</div>
-                    <div>---</div>
+                    <!-- <div>-</div> -->
                 </div>
             </div> 
             <hr>
 
             <div class="card_effect"> 
-                <div class="carrusel-images" data-num="3">                                       
+                <div class="carrusel-images" data-num="2">                                       
                     <pre class="prettyprint lang-php"> 
 //Las contantes tienen un ambito global por defecto
 //Solo pueden alamcenar valores escalares (osea no divisibles, como un array por ejemplo)
@@ -289,31 +293,11 @@ PI
 
 echo "La linea donde me encuentro: " . __FILE__;
 echo "El fichero/archivo con el que estoy trabajando es: " . __FILE__;
-                    </pre>  
-                    
-                    <pre class="prettyprint lang-php">                          
-const int NUM = 23
-const double NUM = 23.0
-
-
-
-const GenerateRandomNumber = max => {
-returnMath.floor(Math.random() * (max + 1));
-};  
-const randomNumber = GenerateRandomNumber(10)
-
-const GenerateRandomNumber = (min, max) => {
-return Math.floor(Math.random() * (max+1 - min) + min);
-};
-const randomNumber = GenerateRandomNumber(10, 20)
-
-console.log(randomNumber)
-                    </pre>   
+                    </pre>                
                 </div>
                 <div class="legend">
                     <div class="active">Constantes propias</div>
                     <div>Constantes predefinidas</div>
-                    <div><img src="img/Anexo/frio.png" alt="" width="80px"></div>
                 </div>
             </div>
 
@@ -321,17 +305,18 @@ console.log(randomNumber)
 
             <div class="card_effect"> 
                 <div class="carrusel-images" data-num="3">                                       
-                    <pre class="prettyprint lang-php"> 
+                    <pre class="prettyprint lang-php">
+                        
 $numero;
 $numero = 23;
-$numero = 2.3;
-//======================== 
-echo "Número: " . $num;
-//======================== 
 
+$numero = 2.3;
+
+echo "Número: " . $num;
                     </pre>
                     <pre class="prettyprint lang-php">     
 $cadena = "5"
+
 $resultado = (int)$cadena
                     </pre>
                     <pre class="prettyprint lang-php">    
@@ -415,35 +400,37 @@ ucwords("hola mundo")
         <div class="card_effect"> 
             <div class="carrusel-images" data-num="3">  
                 <pre class="prettyprint lang-php">
-//Arrays Indexados de una dimensión==================                             
-$semana[] = "Lunes"; //se asocia automatica mente al índice [O]
-$semana[1] = "Martes"; //Tambien de puede especificar el índice de forma manual
-$semana[] = "Miercoles"; //se asocia automatica mente al índice [2]
-echo $semana[0];
-//---------------------
+//Arrays Indexados de una dimensión   
 $semana = array("Lunes","Martes","Miércoles");
 echo $semana[0];
-$datos[]="Jueves"; //Agregar un elemento al final
+$datos[]="Jueves"; // Se agrega automaticamente al final del array                      
+$semana[] = "Lunes"; // Se asocia automatica mente al índice [O]
+$semana[1] = "Martes"; // Tambien de puede especificar el índice de forma manual
+$semana[] = "Miercoles"; // Se asocia automatica mente al índice [2], que es el sigiente disponible
+echo $semana[2]; // Miercoles 
 
-//Arrays Indexados de dos dimensiónes==================    
+//Arrays Indexados de dos dimensiónes
 
-//Arrays Asociativos de una dimensión==================    
+
+
+//Arrays Asociativos de una dimensión
 $datos = array("Nombre"=>"Juan",
-       "Apellido"=>"Gómez",
-       "Edad"=>27);
+             "Apellido"=>"Gómez",
+                 "Edad"=>27);
 echo $datos["Nombre"];
 $datos["Pais"]="España"; //Agregar un elemento al final
 
-//Arrays Asociativos de dos dimensiónes================== 
+//Arrays Asociativos de dos dimensiónes
 $alimentos = array("fruta"=>array("tropical"=>"kiwi"),
-                          "cítrico"=>"mandarina",
-                          "otros"=>"manzana"),
+                 "cítrico"=>"mandarina",
+                   "otros"=>"manzana"),
 
-           "leche"=>array("animal"=>"vaca",
-                          "vegetal"=>"coco"),
+                   "leche"=>array("animal"=>"vaca",
+                                 "vegetal"=>"coco"),
 
-           "carne"=>array("vacuno"=>"lomo",
-                          "porcino"=>"pata"));
+                   "carne"=>array("vacuno"=>"lomo",
+                                 "porcino"=>"pata")
+              );
 
 echo $alimentos["carne"]["vacuno"];
 
@@ -472,8 +459,8 @@ sort($datos) //Ordena por orden alfabético
             </div>
             <div class="legend">
                 <div class="active">Variables de Arrays</div>
-                <div>Funciones predefinidas de Arrays</div>
-                <div>-</div>
+                <div>Funciones predefinidas</div> 
+                <div>-</div>   
             </div>
         </div> 
 

@@ -1,0 +1,536 @@
+{{ define "main" }}
+
+<style>
+    .contenedor{
+        width: 95%;
+        margin: auto;
+        margin-top: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        /* max-height: 29px; */
+        overflow: hidden;
+        /* transition: max-height 0.6s ease-in-out; */
+        backdrop-filter: blur(7.5px);
+        border: 3px solid #7e7e7e;
+
+        font-family: monospace;
+    }
+
+
+    h2,h3,h4{
+      text-align: center;
+      margin: auto;
+      background-color: gray;
+    }
+
+
+
+    .web{
+        padding-top: 1px;
+        margin-top: 20px;
+        background-color: lightgrey;
+        width: 95%;
+        margin: auto;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .input{
+        display: inline-block;  
+        display: flex;
+        flex-direction: column;
+       
+    }
+
+    #formattedCode{
+        padding: 10px 50px 50px 50px;
+    }
+    .input_conten pre{
+        overflow: hidden;
+    }
+    .input_conten{
+        text-align: center;
+        margin-top: 30px;
+
+        display: flex;
+        align-content: center;
+        flex-wrap: wrap;
+        /* height: 100px; */
+        flex-direction: column;
+    }
+
+    .contenedor hr{
+        margin-top: 30px;
+    }
+
+    .boton_formatear{
+        background-color: #222222;
+        color: white;
+    }
+
+    fieldset{
+        padding: 30PX;
+        text-align: initial;
+    }
+</style>
+
+<div class="contenedor">
+
+    <h2>Etiquetas de HTML</h2>
+    <div class="web">
+
+        <div class="nota">
+            <ul>
+                <li>Un elemento html es todo aquello que hay en las etiquetas (etiquetas inclusive)</li>
+                <li>Un elemento vacio es una etiqueta sin contenido </li>
+            </ul>
+        </div>    
+            
+        <!-- Por defecto, el metodo GET es el que se ejecuta cuando entramos a una página a traves de una url -->
+        <form action="enviar.html" method="GET"> <!-- Error 405, se ha enviado el formulario "enviar.html" pero no se ha encontrado el archivo para recibir la informacion-->
+            <!-- El name es imprescindible en los input porque representan la clave del valor  -->
+        
+            <section>
+                <div class="input_conten">
+                    <div class="input">
+                        <label for="nombre-asociado">Nombre del campo a rellenar:</label>     
+                        <input type="text" id="nombre-asociado" name="nombre">
+                        <input type="reset"> 
+                        <button>Enviar</button>
+                    </div>
+                    <button  type="button"  class="boton_formatear" value="inactivo">Formatear Código</button>
+                </div>
+                <div></div>
+            </section>
+
+            <hr>
+            
+            <section>
+                <!-- Estos input deberian ir cada uno en su label, pero para no ensuciar el codigo los pongo aqui-->
+                <div class="input_conten">   
+                    <div class="input">
+                        <button>Enviar (✅ Envia el formulario)</button> 
+                        <button type="button">Enviar (❌ NO envia el formulario)</button> 
+                        <input type="submit" value="Enviar (✅ Envia el formulario)"> 
+                        <input type="button" value="Enviar (❌ NO envia el formulario)"> 
+                    </div>
+                    <button type="button"  class="boton_formatear" value="inactivo">Formatear Código</button>
+                </div>
+                <div></div>
+            </section>
+
+            <hr>
+
+            <section>
+                <!-- Estos input deberian ir cada uno en su label, pero para no ensuciar el codigo los pongo aqui-->
+                <div class="input_conten">   
+                    <div class="input">
+                        <input type="date">
+                        <input type="time">
+                        <input type="datetime-local"> <!-- No funciona en firefox -->
+                
+                        <input type="month">
+                        <input type="week">
+                    
+                        <input type="datetime"> <!-- Obsoleto, se comporta como text -->
+                    </div>
+                    <button  type="button"  class="boton_formatear" value="inactivo">Formatear Código</button>
+                </div>
+                <div></div>
+            </section>
+
+            <hr>
+
+            <section>
+                <!-- Estos input deberian ir cada uno en su label, pero para no ensuciar el codigo los pongo aqui-->
+                <div class="input_conten">   
+                    <div class="input">
+                        <input type="color">
+                        <input type="file">
+                    </div>
+                    <button  type="button"  class="boton_formatear" value="inactivo">Formatear Código</button>
+                </div>
+                <div></div>
+            </section>
+            
+            <hr>
+
+            <section>
+                <!-- Estos input deberian ir cada uno en su label, pero para no ensuciar el codigo los pongo aqui-->
+                <div class="input_conten">   
+                    <div class="input">
+                        <input type="range" step="5" min="0" max="10">
+
+                        <label for="combustible">Gasolina</label>     
+                        <meter id="combustible" min="0" max="100" value="80" low="30" high="80" optimum="50"></meter>
+        
+                        <label for="task">Gasolina</label>     
+                        <progress id="task" max="100" value="10"></progress>
+                    </div>
+                    <button type="button"  class="boton_formatear" value="inactivo">Formatear Código</button>
+                </div>
+                <div></div>
+            </section>
+
+            <hr>
+
+            <section>
+                <!-- Estos input deberian ir cada uno en su label, pero para no ensuciar el codigo los pongo aqui-->
+                <div class="input_conten">   
+                    <div class="input">
+                        <input type="text" placeholder="Es el input por defecto"> 
+                        <input type="number" placeholder="Inserte numero" value="23"> 
+            
+                        
+                        <input type="hidden"> <!-- para jugar con javascript -->
+
+                        <label for="mensaje">Mensaje</label>
+                        <textarea name="" id="mensaje" cols="30" rows="10"></textarea>
+                    </div>
+                    <button type="button" class="boton_formatear" value="inactivo">Formatear Código</button>
+                </div>
+                <div></div>
+            </section>
+             
+
+            <section>
+                <!-- Estos input deberian ir cada uno en su label, pero para no ensuciar el codigo los pongo aqui-->
+                <div class="input_conten">   
+                    <div class="input">
+                        <input type="text" placeholder="autofoco" autofocus>
+                        <input type="text" placeholder="requerido"  required>
+                        <input type="text" value="hola" placeholder="readonly"  readonly>
+                        <input type="text" placeholder="No se enviara en el formulario" disabled> 
+                        <input type="text" placeholder="min y max de caracteres" minlength="2" maxlength="5">
+                        <input type="number" placeholder="min y max de numeros" min="3" max="10">
+                    </div>
+                    <button type="button" class="boton_formatear" value="inactivo">Formatear Código</button>
+                </div>
+                <div></div>
+            </section>
+
+            <hr>
+
+            <section>
+                <div class="input_conten">   
+                    <div class="input">
+                        <fieldset>
+                            <legend>Elemento seleccionable único</legend>
+                            <div>
+                                Género
+                                <label for=""> Masculino
+                                    <input type="radio" name="misma_categoria" value="M (es lo que se envia al servidor, no tiene por que coincidir con Masculino)">
+                                </label>
+                            </div>
+                            <div>
+                                <label for=""> Femenino
+                                    <input type="radio" name="misma_categoria" value="F">
+                                </label>
+                            </div>
+                            <div>
+                                <label for=""> Neutro
+                                    <input type="radio" name="misma_categoria" value="N" checked>
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <button type="button" class="boton_formatear" value="inactivo">Formatear Código</button>
+                </div>
+                <div></div>
+            </section>
+
+            <hr>
+
+            <section>
+                <div class="input_conten">   
+                    <div class="input">
+                        <fieldset>
+                            <legend>Elemento seleccionable multiple</legend>
+                            <div>
+                                <label for=""> 
+                                    HTML
+                                    <input type="checkbox" name="misma_categoria_2 (Lenguaje)" value="html5">
+                                </label>
+                            </div>
+                            <div>
+                                <label for=""> 
+                                    CSS
+                                    <input type="checkbox" name="misma_categoria_2 (Lenguaje)" value="CSS" checked>
+                                </label>
+                            </div>
+                            <div>
+                                <label for=""> 
+                                    JavaScript
+                                    <input type="checkbox" name="misma_categoria_2 (Lenguaje)" value="JS">
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <button type="button" class="boton_formatear" value="inactivo">Formatear Código</button>
+                </div>
+                <div></div>
+            </section>
+           
+            <hr>
+
+            <section>
+                <div class="input_conten">   
+                    <div class="input">
+                        <div>
+                            <select name="lenguajes" id="">
+                                <option value="html">html</option>
+                                <option value="css" selected>css</option> <!--seleccionado por defecto-->
+                                <option value="js">Java script</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" class="boton_formatear" value="inactivo">Formatear Código</button>
+                </div>
+                <div></div>
+            </section>
+           
+            <hr>
+            
+            <section>
+                <div class="input_conten">   
+                    <div>
+                        <select name="lenguajes" id="" multiple>
+                            <option value="html">html</option>
+                            <option value="css">css</option>
+                            <option value="js">Java script</option>
+                        </select>
+                    </div>
+                    <button type="button" class="boton_formatear" value="inactivo">Formatear Código</button>
+                </div>
+                <div></div>
+            </section>
+
+            <hr>
+
+            <section>
+                <div class="input_conten">   
+                    <div>
+                        <select name="lenguajes" id="">
+                            <optgroup label="Fundamentales">
+                                <option value="html">html</option>
+                                <option value="css">css</option>
+                            </optgroup>
+                            <option value="js" selected>Java script</option>
+                        </select>
+                    </div>
+                    <button type="button" class="boton_formatear" value="inactivo">Formatear Código</button>
+                </div>
+                <div></div>
+            </section>
+         
+           <hr>
+
+           <section>
+                <div class="input_conten">    
+                        <div>
+                            <input type="text" list="mascotas">
+                            <datalist id="mascotas">
+                                <option value="dog">Descripción opcional para perro</option>
+                                <option value="cat">Descripción opcional para gato</option>
+                                <option value="pig">Descripción opcional para cerdo</option>
+                                <option value="hamster">Descripción opcional para hámster</option>
+                            </datalist>
+                        </div>
+                    <button type="button" class="boton_formatear" value="inactivo">Formatear Código</button>
+                </div>
+                <div></div>
+            </section>
+
+            <hr>
+
+            <section>
+                <div class="input_conten">   
+                    <div>
+                        <fieldset>
+                            <legend>Elemento seleccionable multiple</legend>
+                            <div>
+                                <label for=""> Buscar
+                                    <input type="search">
+                                </label>
+                            </div>
+                
+                            <div>
+                                <label for=""> telefono
+                                    <input type="tel">
+                                </label>
+                            </div>
+                
+                            <div>
+                                <label for=""> email
+                                    <input type="email">
+                                </label>
+                            </div>
+                
+                            <div>
+                                <label for=""> password
+                                    <input type="password">
+                                </label>
+                            </div>
+                
+                            <div>
+                                <label for=""> url
+                                    <input type="url">
+                                </label>
+                            </div>
+                
+                            <input type="reset"> 
+                            <button>Enviar</button>
+                        </fieldset>
+                    </div>
+                    <button type="button" class="boton_formatear" value="inactivo">Formatear Código</button>
+                </div>
+                <div></div>
+            </section>
+         
+
+
+            
+           
+
+            
+
+        </form>
+
+
+
+        <style>
+            #footer_principal{
+                background-color: #2a6ea5;
+                text-align: center;
+                padding: 20px;
+            }
+        </style>
+        <footer id="footer_principal">
+           
+            <div class="input_conten">   
+                <div>
+                    <small>Derechos reservados</small> 
+                    <address>Tfno: 123456789</address> <!--informacion de la pagina-->                     
+                </div>
+                <button type="button" class="boton_formatear" value="inactivo">Formatear Código</button>
+            </div>
+            <div></div>
+           
+          
+        </footer>
+
+    </div>
+
+    
+</div>
+
+
+
+<script>
+    var botonesFormatear = document.getElementsByClassName('boton_formatear');
+    Array.from(botonesFormatear).forEach( (boton, indice) => {
+        //boton.addEventListener("click", function() {formatear(boton, 'ole');});
+
+        console.log(boton + ' ' + indice)
+
+        var cadena_1 = `
+        <!-- Existen 2 formas de asociar el label con el input: -->
+        <!-- 1º Opción: -->
+        <label for="nombre-asociado">Nombre del campo a rellenar:</label>     
+        <input type="text" id="nombre-asociado" name="nombre">
+        <input type="reset"> 
+        <button>Enviar</button>
+        -----------------------------------------------------------------------------
+        <!-- 2º Opción: -->
+        <label for="nombre-asociado-alternativo"> 
+            Nombre del campo a rellenar
+            <input type="text" id="nombre-asociado-alternativo" name="apellidos">
+        </label>
+        <input type="reset">              
+        <button>Enviar</button>
+
+        <!--Es menos comun la 2º Opción porque da menos juego con los selectores css --> 
+        `;
+
+        var cadena_2 =`
+        <input type="date">
+        <input type="time">
+        <input type="datetime-local"> <!-- No funciona en firefox -->
+
+        <input type="month">
+        <input type="week">
+    
+        <input type="datetime"> <!-- Obsoleto, se comporta como text -->
+        `
+
+        switch(indice){
+            case 0: boton.addEventListener("click", () => formatear(boton, cadena_1)); break;
+            case 1: boton.addEventListener("click", () => formatear(boton, null)); break
+            case 2: boton.addEventListener("click", () => formatear(boton, cadena_2)); break;
+            default:
+            boton.addEventListener("click", () => formatear(boton, null)); 
+        }
+        
+    });
+
+    function formatear(boton, texto) {
+        var padre = boton.parentNode;
+        var hermanoDelPadre = padre.nextElementSibling;
+
+        if (boton.value == "activo") {
+            boton.value = "inactivo"
+            hermanoDelPadre.style.display = "none";
+        } else {
+            boton.value = "activo" 
+            if(texto == null){ texto = padre.querySelector('div').innerHTML;}           
+            texto = escapeHtml(texto)
+            hermanoDelPadre.innerHTML = `<pre><code>${texto}</code></pre>`;
+            hermanoDelPadre.style.display = "block";
+        }
+    }
+
+    function escapeHtml(html) {
+        const textArea = document.createElement("textarea");
+        textArea.textContent = html;
+        return textArea.innerHTML;
+    }
+                
+    // let isFormatted = false;
+
+    // document.getElementById("formatButton").addEventListener("click", function() {
+    // if (isFormatted) {
+    //     // Si el código ya está formateado, mostrar el código original
+    //     document.getElementById("formattedCode").style.display = "none";
+    //     // document.getElementById("originalCode").style.display = "inline-block";
+    //     isFormatted = false;
+    // } else {
+    //     // Si el código no está formateado, mostrar el código formateado
+    //     const originalCode = document.getElementById("originalCode").innerHTML;
+    //     const originalCode2 = `
+    //     <!-- Existen 2 formas de asociar el label con el input: -->
+
+    //         <label for="nombre-asociado-alternativo"> 
+    //             Nombre del campo a rellenar
+    //             <input type="text" id="nombre-asociado-alternativo" name="apellidos">
+    //         </label>
+    //         <input type="reset">              
+    //         <button>Enviar</button>
+
+    //     <!--Es menos comun porque da menos juego con los selectores css --> 
+    //     <!-- 2º Opción: -->
+    //     -----------------------------------------------------------------------------
+    //     <!-- 1º Opción: -->
+    //     `;
+    //     const formattedCode = escapeHtml(originalCode);
+    //     const formattedCode2 = escapeHtml(originalCode2);         
+    //     document.getElementById("formattedCode").innerHTML = `<pre><code>${formattedCode2 + formattedCode}</code></pre>`;
+    //     //document.getElementById("originalCode").style.display = "none";
+    //     document.getElementById("formattedCode").style.display = "block";
+    //     isFormatted = true;
+    // }
+    // });
+
+
+</script> 
+
+{{ end }}

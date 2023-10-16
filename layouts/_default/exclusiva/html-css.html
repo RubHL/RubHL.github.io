@@ -1,167 +1,221 @@
 {{ define "main" }}
 
   <style>
-  .desplegable {
+    /* DESPLEGABLES */
+    .desplegable {
 
-    width: 95%;
-    margin: auto;
-    margin-top: 10px;
-    border-radius: 10px;
-    background-color: lightgray;
-    height: 50px;
-    cursor: pointer;
-    overflow: hidden; /* Para ocultar el contenido que se desborda */
-    transition: height 0.9s ease-in-out; /* Transición en max-height */
+      width: 95%;
+      margin: auto;
+      margin-top: 10px;
+      border-radius: 10px;
+      /* background-color: lightgray; */
+      /* height: auto; */
+      cursor: pointer;
+      max-height: 29px;
+     
+      overflow: hidden; /* Para ocultar el contenido que se desborda */
+      /*transition: height 0.3s ease-in-out; /* Transición en max-height */
+      transition: max-height 0.6s ease-in-out;
+      backdrop-filter: blur(7.5px);
+      border: 3px solid #7e7e7e;
 
-    /* display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column; */
-    
-  }
-  .section{
-    border: 3px blue solid;
-    background-color: lightgray;
-    height: 50px;
-    cursor: pointer;
-    overflow: hidden; /* Para ocultar el contenido que se desborda */
-    transition: height 0.9s ease-in-out; /* Transición en max-height */
-    margin-top: 5px;
-    margin-bottom: 5px;
-    /* display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column; */
-  }
-  h2,h3{
-    text-align: center;
-    margin: auto;
-    background-color: gray;
-  }
 
-  h2:hover, h3:hover{
-    background-color: lightslategray;
-  }
+      font-family: monospace;
+    }
+    .desplegable .section{
+
+      border: 3px grey solid;
+
+      background-color: lightgray;
+
+      margin-top: 5px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 5px;
+
+      width: 95%;
+      max-height: 29px;
+      
+      overflow: hidden; 
+      transition: max-height 0.6s ease-in-out;
+    }
   </style>
 
-<style>
-  /* INSTAGRAM */
-  .posts{
-      display: flex;
-  }
-  .post{
-      width: 300px;
-      display: inline-block;
-      margin-left: 10px;
-      margin-right: 10px;
-  }
-</style>
+  <style>
+    /* GENERAL */
+    h2,h3,h4{
+      text-align: center;
+      margin: auto;
+      background-color: gray;
+      font-size: 21px;
+    }
 
+    h2:hover, h3:hover{
+      background-color: lightslategray;
+    }
+
+    .separador{
+        background-color: grey;
+        height: 4px;
+        display: flex;
+        /* justify-content: flex-start; */
+        margin-top: 45px;
+        margin-bottom: 45px;
+    }
+    .separador > h4{
+            /* width: fit-content; */
+        padding: 10px;
+        margin-top: -19px;
+        font-size: 19px;
+    }
+
+  </style>
+
+  <style>
+    /* INSTAGRAM */
+    .posts{
+        display: flex;
+    }
+    .post{
+        width: 300px;
+        display: inline-block;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+  </style>
 
   <section class="desplegable">
-    <h2 onclick="toggleExpand(event)">Formas</h2>
-    <div style="display: none;">
-      <section style="border: 3px red solid; width: 80%; margin: auto;" class="section">
-        <h3 onclick="toggleExpand(event)">Teoría</h3>
-        <div style="display: none;">{{ partial "html-css/exclusive-section-1.html" . }}</div>
+    <h2 onclick="Expandir_Tema(event,false)">Display</h2>
+    <div>
+      <section class="section">
+        <h3 onclick="Expandir_Tema(event,true)">Teoría</h3>
+        <div>{{ partial "html-css/exclusive-section-1.html" . }}</div>
       </section>
 
       <section id="Display_type" class="section">
-        <h3 onclick="toggleExpand(event)">Display</h3>
-        <div style="display: none;">{{ partial "html-css/exclusive-section-2.html" . }}</div>
+        <h3 onclick="Expandir_Tema(event,true)">Display</h3>
+        <div>{{ partial "html-css/exclusive-section-2.html" . }}</div>
       </section>
 
       <section id="Bugs" class="section">
-        <h3 onclick="toggleExpand(event)">Caracteristicas de los bloques</h3>
-        <div style="display: none;">{{ partial "html-css/exclusive-section-3.html" . }}</div>
+        <h3 onclick="Expandir_Tema(event,true)">Caracteristicas de los bloques</h3>
+        <div>{{ partial "html-css/exclusive-section-3.html" . }}</div>
       </section>
     </div>
   </section>
 
   <section class="desplegable">
-    <h2 onclick="toggleExpand(event)">Maquetacion</h2>
-    <div style="display: none;">
+    <h2 onclick="Expandir_Tema(event,false)">Maquetación</h2>
+    <div>
       <section id="propiedades" class="section"> 
-          <h2 onclick="toggleExpand(event)">Propiedades</h2>
-          <div style="display: none;">{{ partial "html-css/exclusive-section-4-1.html" . }}</div>
+          <h3 onclick="Expandir_Tema(event,true)">Propiedades</h2>
+          <div>{{ partial "html-css/exclusive-section-4-1.html" . }}</div>
       </section> 
 
       <section id="propiedades" class="section"> 
-          <h2 onclick="toggleExpand(event)">Centrar contenido</h2>  
-          <div style="display: none;">{{ partial "html-css/exclusive-section-4-2.html" . }}</div>    
+          <h3 onclick="Expandir_Tema(event,true)">Centrar contenido</h2>  
+          <div>{{ partial "html-css/exclusive-section-4-2.html" . }}</div>    
       </section>
 
       <section id="Stacking_context" class="section">
-        <h2 onclick="toggleExpand(event)">Stacking content</h2>  
-        <div style="display: none;">{{ partial "html-css/exclusive-section-5.html" . }}</div>   
+        <h3 onclick="Expandir_Tema(event,true)">Stacking content</h2>  
+        <div>{{ partial "html-css/exclusive-section-5.html" . }}</div>   
       </section>
 
       <section id="Position" class="section">
-        <h2 onclick="toggleExpand(event)">Position</h2>  
-        <div style="display: none;">{{ partial "html-css/exclusive-section-6.html" . }}</div> 
+        <h3 onclick="Expandir_Tema(event,true)">Position</h2>  
+        <div>{{ partial "html-css/exclusive-section-6.html" . }}</div> 
       </section>
     </div>
   </section>
 
 
   <section class="desplegable">
-    <h2 onclick="toggleExpand(event)">Float</h2>
-    <div style="display: none;">
+    <h2 onclick="Expandir_Tema(event,false)">Float</h2>
+    <div>
       <section id="floats" class="section">
-        <h2 onclick="toggleExpand(event)">float</h2> 
-        <div style="display: none;">{{ partial "html-css/exclusive-section-7.html" . }}</div>       
+        <h3 onclick="Expandir_Tema(event,true)">Práctica</h2> 
+        <div>{{ partial "html-css/exclusive-section-7.html" . }}</div>       
       </section>    
         
       <section id="float_bug" class="section">
-        <h2 onclick="toggleExpand(event)">float_bug</h2> 
-        <div style="display: none;">{{ partial "html-css/exclusive-section-8.html" . }}</div> 
+        <h3 onclick="Expandir_Tema(event,true)">Float bugs</h2> 
+        <div>{{ partial "html-css/exclusive-section-8.html" . }}</div> 
       </section>
     </div>
   </section>  
   
   <section class="desplegable">
-    <h2 onclick="toggleExpand(event)">Display</h2>
-    <div style="display: none;">
+    <h2 onclick="Expandir_Tema(event,false)">Display II</h2>
+    <div>
       <section id="Gridpane" class="section">
-        <h2 onclick="toggleExpand(event)">GridPane</h2> 
-        <div style="display: none;">{{ partial "html-css/exclusive-section-9.html" . }}</div>  
+        <h3 onclick="Expandir_Tema(event,true)">GridPane</h2> 
+          <div>En desarrollo...</div>
+        <!-- <div>{{ partial "html-css/exclusive-section-9.html" . }}</div>   -->
       </section>
 
       <section id="Flexbox" class="section">
-        <h2 onclick="toggleExpand(event)">Flexbox</h2> 
-        <div style="display: none;">{{ partial "html-css/exclusive-section-10.html" . }}</div>  
+        <h3 onclick="Expandir_Tema(event,true)">Flexbox</h2> 
+        <div>En desarrollo...</div>
+        <!-- <div>{{ partial "html-css/exclusive-section-10.html" . }}</div>   -->
       </section>
     </div>
+    
   </section>  
 
   <section class="desplegable">
-    <h2 onclick="toggleExpand(event)">Framework</h2>
-    <div style="display: none;">
+    <h2 onclick="Expandir_Tema(event,false)">Framework</h2>
+    <div>
       <section id="Boostrap" class="section">
-        <div style="display: none;">{{ partial "html-css/exclusive-section-11.html" . }}</div>   
+        En desarrollo...
+        <!-- <div>{{ partial "html-css/exclusive-section-11.html" . }}</div>    -->
       </section>
     </div>
   </section>  
 
+
+  
   <script>
-    function toggleExpand(event) {
+
+    // Obtén todos los elementos <section>
+    var elementosSection = document.querySelectorAll('section');
+
+    // Oculta todos los elementos <div> dentro de los elementos <section>
+    elementosSection.forEach(function(section) {
+      var divs = section.querySelector('div');
+      divs.style.display = 'none';
+    });
+
+
+    function Expandir_Tema(event, sub_desplegable) {
       event.stopPropagation();
 
       var parent = event.currentTarget.parentNode
       var children = parent.querySelector('div');
-      var expanded
-  
-      if(getComputedStyle(parent).height == '50px') {
-          parent.style.height = 'auto'; /* Establece la altura en "auto" para expandir */
-          expanded = true
+
+      var estiloEnLinea = children.style.display; // Obtén el estilo en línea del elemento
+      var estiloComputado = getComputedStyle(children); // Obtén el estilo computado del elemento
+      if(estiloComputado.display == "none") {
+        children.style.display = "block"
+
+        console.log("has clickado "+ parent.scrollHeight + "px")
+        // parent.style.maxHeight = parent.scrollHeight + "px"; // Expande
+        parent.style.maxHeight = "fit-content"; 
+
+        if(sub_desplegable){
+          var nueva_medida = parseInt(parent.parentNode.parentNode.scrollHeight) + parseInt(parent.scrollHeight);
+          parent.parentNode.parentNode.style.maxHeight = nueva_medida + "px"
+
+          console.log("padre " +  nueva_medida + "px")
+        }
+
       } else {
-          parent.style.height = '50px'; /* Establece la altura original */
-          expanded = false
+        parent.style.maxHeight =  "29px"; 
+        children.style.display = "none"
       }
-      
-      children.style.display = (expanded) ? 'block' : 'none'; /* Muestra u oculta los hijos */
-      
+
     }
+
   </script>
 
 {{ end }}

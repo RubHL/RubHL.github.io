@@ -54,79 +54,71 @@
 
             <div class="card_effect"> 
                 <div class="carrusel-images" data-num="2">                                       
-                    <pre class="prettyprint lang-php">   
-//Superclase
-class Vehiculo{
-//Atributos/Campos
-//Los var son public por defecto, no hace falta poner public
-    private $color;
-    protected $ruedas;
-    var $motor 
+                    <pre class="prettyprint lang-typescript">&lt;script&gt;                          
+    class Vehiculo { // Superclase
 
-//Este atributo/campo pertencera a la clase
-    private static $tipo_vehicuo = "Terrestre" 
+        // Atributos/Campos de Objeto
+        private color: string;
+        protected ruedas: number;
+        motor: string; // Si no se especifica es público por defecto en TypeScript
 
-//Si no existe metodo contructor, se crea uno vacio por defecto
-//Metodo constructor (estado inicial al instanciar)
-//$this hace referencia al objeto instanciado ACTUAL
-    public function __construct($color){
-        $this->ruedas=4;
-        $this->color=$color; 
+        // Atributos/Campos de Clase
+        private static tipoVehiculo: string = "Terrestre";
+
+        // Constructor
+        constructor(color: string) {
+            this.ruedas = 4;
+            this.color = color;
+        }
+
+        // Métodos/funciones de Objeto
+        arrancar(): void {
+            console.log("Arranca\n");
+        }
+
+        tipoMotor(motor: string): void {
+            this.motor = motor;
+            console.log("El motor del coche es " + this.motor + "\n");
+        }
+
+        get colorVehiculo(): string {
+            return this.color;
+        }
+
+        get numRuedas(): number {
+            return this.ruedas;
+        }
+
+        // Métodos/funciones de Clase
+        static setTipoVehiculo(tipoVehiculo: string): void {
+            Vehiculo.tipoVehiculo = tipoVehiculo;
+        }
+
+        static getTipoVehiculo(): string {
+            return Vehiculo.tipoVehiculo;
+        }
     }
 
-//Metodo/funcion
-    function arrancar(){
-        echo "Arranca &lt;br&gt;"
-    }
+    class Coche extends Vehiculo {
 
-    funcion tipo_motor($motor){
-        $this->motor=$motor;
-        echo "El motor del coche es " . $this->motor . "&lt;br&gt;";
-    }
+        // Constructor
+        constructor(color: string) {
+            super(color);
+        }
 
-    function get_color(){
-        return $this->color;
-    }
+        // Métodos/funciones de Objeto
+        arrancar_hijo(): void {
+            super.arrancar(); // Llama al método del padre
+            console.log("El motor ruge como el de un coche\n");
+        }
 
-    function get_ruedas(){
-        return $this->ruedas;
+        // Sobreescritura del método tipoMotor
+        tipoMotor(motorCoche: string): void {
+            this.motor = motorCoche; // Ten en cuenta que "motor" es un atributo del padre
+            console.log("El motor del coche es " + this.motor + "\n");
+        }
     }
-
-//Si queremos modificar un atributo de clase hay que hacerlo con un metodo de clase
-    static function set_tipo_vehicuo($tipo_vehicuo){ 
-        return self::$tipo_vehicuo;
-    }
-
-//Si queremos obtener un atributo de clase podemos hacerlo a traves del objeto o a traves de su clase
-    function get_tipo_vehicuo(){ 
-        return self::$tipo_vehicuo;
-    }
-
-}
-                                                        
-//Subclase
-class Coche extends Vehiculo{
-
-    //Si no existe metodo contructor, se crea uno vacio por defecto
-    //Metodo constructor(estado inicial al instanciar)
-    public function __construct($color){
-        $this->ruedas=4;
-        $this->color=$color;
-        //$this hace referencia al objeto instanciado ACTUAL
-    }
-
-    //Metodo/funcion
-    function arrancar(){
-        parent::arrancar();
-        echo "El motor ruge como el de un coche &lt;br&gt;"
-    }
-
-    // Realizamos una sobreescritura de metodos pero con $motor_coche
-    funcion tipo_motor($motor_coche){
-        $this->motor=$motor_coche;
-        echo "El motor del coche es " . $this->motor . "&lt;br&gt;";
-    }
-}
+&lt;/script&gt;                       
 
 
 
@@ -134,40 +126,14 @@ class Coche extends Vehiculo{
 
 
                     </pre> 
-                    <pre class="prettyprint lang-php"> 
-//Instancia del objeto ===============
-include("Archivo_clase_Coche.php"); //importo la clase   
-
-
-new Coche();
-$renault = new Coche("rojo"); //no es obligatorio los paréntesis si el constructor esta vacio (en java si)
-$mazda = new Coche("azul");
-$seat = new Coche("verde");
-
-//Porpiedades de objeto ===============
-$mazda->color="Rosa"; //Error, la propiedad es privada para que otro programador no pueda modificarlo, (abria que recurir al metodo set)
-echo "Color : " . $mazda->color; //Si la propiedd es privada no podemos ver su atributo, (abria que recurir al metodo get)
-echo "Color : " . $mazda->get_color(); // mazda al ser un objeto de su clase aunque este en private, tiene acceso
-echo "Color : " . $truck->get_color(); // truck al ser un objeto de la clase hija no puede acceder el atributo color de su clase padre porque esta en private, para que pueda hacerlo tiene que estar en protected
-//Porpiedades de la clase ===============
-Vehiculo::$tipo_vehicuo = "Lo que me de la gana" //La propiedad de la clase no se puede acceder a traves del objeto, porque pertenece solo a la clase, tambien deberia ser privada para no poder manipularla
-
-//Metodos ===============
-$renault->arrancar();
-$renault->tipo_motor(1600)
-Vehiculo::set_tipo_vehicuo("estandar") //Los metodos de la clase, se utilizan con la clase
-
-
-
-
-
-
+                    <pre class="prettyprint lang-typescript"> 
+    // IDEM Javascript
 
                     </pre>  
                 </div>
                 <div class="legend">
                     <div class="active">Clase</div>
-                    <div>Instanciar clase</div>
+                    <div>Instanciar</div>
                 </div>
             </div>
          
@@ -175,58 +141,45 @@ Vehiculo::set_tipo_vehicuo("estandar") //Los metodos de la clase, se utilizan co
 
             <div class="card_effect"> 
                 <div class="carrusel-images" data-num="2">  
-                    <pre class="prettyprint lang-php">                          
-//Llamada a función normal =========                                                
-function mi_funcion(){
-//code
-return "resultado"; //Opcional
-}
-mi_funcion();
+                    <pre class="prettyprint lang-typescript">&lt;script&gt;                            
+    // Llamada a función
+    function mi_funcion(): string {
+        // code
+        return "resultado"; // Opcional
+    }
+    mi_funcion();
 
-//Paso de parametro =========
-//Recuerda que el ambito local de la variable esta aislada del exterior (no como en javascript)
-function mi_funcion_con_parametros($parametro1,$parametro2){
-//code
-}
-mi_funcion_con_parametros("ejemplo_parametro","ejemplo_parametro_2");
+    // Llamada a función con paso de parámetros
+    // Recuerda que el ámbito local de la variable está aislado del exterior (a diferencia de JavaScript)
+    function mi_funcion_con_parametros(parametro1: string, parametro2: string): void {
+        // code
+    }
+    mi_funcion_con_parametros("ejemplo_parametro", "ejemplo_parametro_2");
 
-//Paso de parametro por defecto =========
-//Recuerda que el ambito local de la variable esta aislada del exterior (no como en javascript)
-function mi_funcion_default($parametro1,$parametro2 = true){
+    // Llamada a función con paso de parámetro por defecto
+    // Recuerda que el ámbito local de la variable está aislado del exterior (a diferencia de JavaScript)
+    function mi_funcion_default(parametro1: string, parametro2: boolean = true): string {
+        
+        parametro1 = parametro1.toLowerCase();
 
-$parametro1 = strtolower($parametro1);
-if($parametro2){
-$resultado = ucwords($parametro1);
-}else{
-"has modificado el parametro por defecto";
-}
-}
-mi_funcion_default("ejemplo_parametro");
-mi_funcion_default("ejemplo_parametro",false);
+        if (parametro2) {
+            return parametro1.charAt(0).toUpperCase() + parametro1.slice(1);
+        } else {
+            return "has modificado el parámetro por defecto";
+        }
+    }
+    mi_funcion_default("ejemplo_parametro");
+    mi_funcion_default("ejemplo_parametro", false);
 
-//Paso de parametro por valor =========
-function incrementa($param){
-$param++;
-return $param;
-}
-$num = 5
-echo incrementa($num); //6
-ehco $num; //5
-
-//Paso de parametro por referencia =========
-function incrementa(&$param){ //Ojo al ampersand(&) 
-$param++;
-return $param;
-}
-$num = 5
-echo incrementa($num); //6
-ehco $num; //6 //Al pasarlo por referencia se mantiene
-
-//Llamada a funcion desde documento externo =========
-include("archivo.php"); //function_externa se encuentran en este archivo
-require("archivo.php"); //detiene el flujo de ejecución si no lo encuentra
-function_externa();
-
+    // Llamada a función con paso de parámetro por valor
+    function incrementa(param: number): number {
+        param++;
+        return param;
+    }
+    let num: number = 5;
+    console.log(incrementa(num)); // 6
+    console.log(num); // 5
+&lt;/script&gt;   
 
 
 
@@ -237,7 +190,7 @@ function_externa();
 
                     </pre>
 
-                    <pre class="prettyprint lang-php">   
+                    <pre class="prettyprint lang-typescript">   
 ----
                     </pre>
                 </div>
@@ -249,30 +202,9 @@ function_externa();
             <hr>
 
             <div class="card_effect"> 
-                <div class="carrusel-images" data-num="3">                                       
-                    <pre class="prettyprint lang-php"> 
-//Las contantes tienen un ambito global por defecto
-//Solo pueden alamcenar valores escalares (osea no divisibles, como un array por ejemplo)
-
-// Constantes propias
-define("NOMBRE_CONSTANTE","Juan"); // Se define con funciones predefinidas
-
-echo NOMBRE_CONSTANTE; //Juan
-echo "Nombre: NOMBRE_CONSTANTE"; //Nombre: NOMBRE_CONSTANTE
-echo "Nombre: " . NOMBRE_CONSTANTE; //Nombre: Juan
-echo "Nombre: " . nombre_constante; //Error
-
-define("NOMBRE_CONSTANTE","Juan", true); 
-echo "Nombre: " . nombre_constante"; //Nombre: Juan
-
-define("NOMBRE_CONSTANTE","Pepe"); 
-define("NOMBRE_CONSTANTE","Ana"); 
-echo "Nombre: " . nombre_constante"; //Error (las constantes no se redefinen)
-
-define("NOMBRE_CONSTANTE","Pepe", true); 
-define("NOMBRE_CONSTANTE","Ana"); 
-echo "Nombre: " . nombre_constante"; //Nombre: Ana (debido al true php diferencia uno de otro)
-            
+                <div class="carrusel-images" data-num="1">                                       
+                    <pre class="prettyprint lang-typescript"> 
+// readonly...
 
 
 
@@ -281,39 +213,9 @@ echo "Nombre: " . nombre_constante"; //Nombre: Ana (debido al true php diferenci
 
 
                     </pre> 
-
-                    <pre class="prettyprint lang-php">                          
-// Constantes predefinidas 
-<a href="https://www.php.net/manual/es/language.constants.php">https://www.php.net/manual/es/language.constants.php</a>
-PI
-
-echo "La linea donde me encuentro: " . __FILE__;
-echo "El fichero/archivo con el que estoy trabajando es: " . __FILE__;
-                    </pre>  
-                    
-                    <pre class="prettyprint lang-php">                          
-const int NUM = 23
-const double NUM = 23.0
-
-
-
-const GenerateRandomNumber = max => {
-returnMath.floor(Math.random() * (max + 1));
-};  
-const randomNumber = GenerateRandomNumber(10)
-
-const GenerateRandomNumber = (min, max) => {
-return Math.floor(Math.random() * (max+1 - min) + min);
-};
-const randomNumber = GenerateRandomNumber(10, 20)
-
-console.log(randomNumber)
-                    </pre>   
                 </div>
                 <div class="legend">
-                    <div class="active">Constantes propias</div>
-                    <div>Constantes predefinidas</div>
-                    <div><img src="img/Anexo/frio.png" alt="" width="80px"></div>
+                    <div class="active">Constante</div>
                 </div>
             </div>
 
@@ -321,32 +223,24 @@ console.log(randomNumber)
 
             <div class="card_effect"> 
                 <div class="carrusel-images" data-num="3">                                       
-                    <pre class="prettyprint lang-php"> 
-$numero;
-$numero = 23;
-$numero = 2.3;
-//======================== 
-echo "Número: " . $num;
-//======================== 
+                    <pre class="prettyprint lang-typescript">
+
+let numero: number = 23;    
+
+let numero: number, numero2: number, numero3: number;
+
+let numero: number = 20, numero2: number = 22, numero3: number = 23;
 
                     </pre>
-                    <pre class="prettyprint lang-php">     
-$cadena = "5"
-$resultado = (int)$cadena
+                    <pre class="prettyprint lang-typescript">     
+let cadena: string = "5"; 
+
+let resultado: number = Number(cadena); // Se castea con una función predefinida
+
+let resultado: number = parseInt(cadena); // Se castea con una función predefinida
                     </pre>
-                    <pre class="prettyprint lang-php">    
-$num = rand();
-$num = rand(0,10);
-$num = pow(2,2);
-echo "numero redondeado" . round($num,2);
-
-$random = rand(); //infito
-$random = rand(0,10); // 0 ~ 10
-echo "Numero random" . $random
-
-$random = rand(); //infito
-$random = rand(0,10); // 0 ~ 10
-echo "Numero random" . $random
+                    <pre class="prettyprint lang-typescript">    
+-
                     </pre>
                 </div> 
             <div class="legend">
@@ -361,43 +255,26 @@ echo "Numero random" . $random
 
         <div class="card_effect"> 
             <div class="carrusel-images" data-num="3">                                       
-                <pre class="prettyprint lang-php"> 
-$ejemplo = 'hola';
+                <pre class="prettyprint lang-typescript"> 
+let cadena: string;
+cadena = "23";
 
-$nombre = "string_ejemplo";
-$nombre = 'string_ejemplo'; //litral
-print 'Mi nombre es $nombre'; //literal
-print "Mi nombre es $nombre";
+let cadena1: string = "23";
+
+let cadena2: string, cadena3: string;
+
+let cadena4: string = "20", cadena5: string = "22", cadena6: string = "23";
+
+// Propiedades ====================
+console.log(cadena.length); // Propiedad de cadena, no de array
+                    
                 </pre>
-                <pre class="prettyprint lang-php">     
+                <pre class="prettyprint lang-typescript">     
 $num = 5
 $resultado = $num . "" //truco para castear a string
                 </pre>
-                <pre class="prettyprint lang-php">    
-// Comparar Strings =========
-// 0 = false (coinciden)                 
-// 1 = true (no coinciden)
-$var1 = "Casa";  
-$var2 = "CASA";
-$resultado = strcmp($var1,$var2); //devuelve 1 si no son iguales o 0 si lo son 
-$resultado = strcasecmp($var1,$var2); //ignora las mayus
-
-If(!$resultado){ // el 0 o el 1 se trata como booleano
-echo "coinciden";
-}else{
-echo "no coinciden";
-}  
-
-//Cambiar caracteres =========
-strtolower("hola mundo")//hola mundo
-strtoupper("hola mundo")//HOLA MUNDO
-ucwords("hola mundo")
-
-
-
-
-
-
+                <pre class="prettyprint lang-typescript">    
+-
 
 
 
@@ -414,38 +291,8 @@ ucwords("hola mundo")
 
         <div class="card_effect"> 
             <div class="carrusel-images" data-num="3">  
-                <pre class="prettyprint lang-php">
-//Arrays Indexados de una dimensión==================                             
-$semana[] = "Lunes"; //se asocia automatica mente al índice [O]
-$semana[1] = "Martes"; //Tambien de puede especificar el índice de forma manual
-$semana[] = "Miercoles"; //se asocia automatica mente al índice [2]
-echo $semana[0];
-//---------------------
-$semana = array("Lunes","Martes","Miércoles");
-echo $semana[0];
-$datos[]="Jueves"; //Agregar un elemento al final
-
-//Arrays Indexados de dos dimensiónes==================    
-
-//Arrays Asociativos de una dimensión==================    
-$datos = array("Nombre"=>"Juan",
-       "Apellido"=>"Gómez",
-       "Edad"=>27);
-echo $datos["Nombre"];
-$datos["Pais"]="España"; //Agregar un elemento al final
-
-//Arrays Asociativos de dos dimensiónes================== 
-$alimentos = array("fruta"=>array("tropical"=>"kiwi"),
-                          "cítrico"=>"mandarina",
-                          "otros"=>"manzana"),
-
-           "leche"=>array("animal"=>"vaca",
-                          "vegetal"=>"coco"),
-
-           "carne"=>array("vacuno"=>"lomo",
-                          "porcino"=>"pata"));
-
-echo $alimentos["carne"]["vacuno"];
+                <pre class="prettyprint lang-typescript">
+-
 
 
 
@@ -454,16 +301,13 @@ echo $alimentos["carne"]["vacuno"];
 
 
                 </pre>
-                <pre class="prettyprint lang-php">   
-$datos = array("Nombre"=>"Juan",
-       "Apellido"=>"Gómez",
-       "Edad"=>27);
-sort($datos) //Ordena por orden alfabético
+                <pre class="prettyprint lang-typescript">   
+-
 
 
 
                 </pre>
-                <pre class="prettyprint lang-php">   
+                <pre class="prettyprint lang-typescript">   
 -
 
 
@@ -472,8 +316,8 @@ sort($datos) //Ordena por orden alfabético
             </div>
             <div class="legend">
                 <div class="active">Variables de Arrays</div>
-                <div>Funciones predefinidas de Arrays</div>
-                <div>-</div>
+                <div>Funciones predefinidas</div> 
+                <div>-</div>   
             </div>
         </div> 
 
@@ -482,7 +326,7 @@ sort($datos) //Ordena por orden alfabético
         
         <div class="card_effect"> 
             <div class="carrusel-images" data-num="2">  
-                <pre class="prettyprint lang-javascript">
+                <pre class="prettyprint lang-typescript">
 let empleados = ['Juan','Antonio','Pepe']
 let empleados: Array&lt;Strings> = ['Juan','Antonio','Pepe']
 let empleados: Strings[] = ['Juan','Antonio','Pepe']
@@ -504,7 +348,7 @@ let empleados.map( (nombre:string) :void  => { estado(nombre) })
 
 
                 </pre>
-                <pre class="prettyprint lang-javascript"> 
+                <pre class="prettyprint lang-typescript"> 
 -
                 </pre>
             </div>
@@ -518,11 +362,11 @@ let empleados.map( (nombre:string) :void  => { estado(nombre) })
 
         <div class="card_effect"> 
             <div class="carrusel-images" data-num="2">  
-                <pre class="prettyprint lang-php">                          
--
+                <pre class="prettyprint lang-typescript">                          
+console.log("hola mundo"); 
                     </pre>
 
-                    <pre class="prettyprint lang-php">   
+                    <pre class="prettyprint lang-typescript">   
 let mensaje = "Hola mundo"
 typeof //'Hola mundo'
 
@@ -537,7 +381,7 @@ typeof //'Hola mundo'
 
             <div class="card_effect"> 
                 <div class="carrusel-images" data-num="3">  
-                    <pre class="prettyprint lang-php">                          
+                    <pre class="prettyprint lang-typescript">                          
 if($edad>=18){
 echo "Eres mayor de edad";
 }else{
@@ -571,14 +415,14 @@ echo "No";
 
                     </pre>
 
-                    <pre class="prettyprint lang-php">   
+                    <pre class="prettyprint lang-typescript">   
 // Con el operador ternatio puedes guardarlo directamente en un variable o en un echo
 $resultado = $edad&lt;18 ? "Eres menor de edad" : "Eres mayor de edad";
 echo  $resultado;                    
 
 echo $usuario=="Pepe" && $edad&lt;18 ? "Eres menor de edad" : "Eres mayor de edad";
                     </pre>
-                    <pre class="prettyprint lang-php">   
+                    <pre class="prettyprint lang-typescript">   
 //Con llaves
 switch($variable){
 case "Juan":
@@ -646,13 +490,13 @@ endswitch
 
             <div class="card_effect"> 
                 <div class="carrusel-images" data-num="2">  
-                    <pre class="prettyprint lang-php">                          
+                    <pre class="prettyprint lang-typescript">                          
 $var = 1
 while($var&lt;3){
 $var++
 }
                     </pre>
-                    <pre class="prettyprint lang-php">   
+                    <pre class="prettyprint lang-typescript">   
 $var = 1
 Do{
 $var++
@@ -671,7 +515,7 @@ $var++
 
             <div class="card_effect"> 
                 <div class="carrusel-images" data-num="3">  
-                    <pre class="prettyprint lang-php"> 
+                    <pre class="prettyprint lang-typescript"> 
 // Mientras la condición: $i&lt;= $variable.lenght; sea verdadera, el bucle se activará                                                        
 for($i = 0; $i&lt;= 10; $i++){
 //i valdrá: 11
@@ -716,7 +560,7 @@ echo $datos[$i] .  "&lt;br>";
 
 
                     </pre>
-                    <pre class="prettyprint lang-php">
+                    <pre class="prettyprint lang-typescript">
 //Recorrer un Array asociativo de una dimensión================== 
 $datos = array("Nombre"=> "Pepe",
 "Apellidos" => "Serrano Pérez",
@@ -762,7 +606,7 @@ echo var_dump($alimentos) //Función predefinida que desglosa el array
 
 
                     </pre>
-                    <pre class="prettyprint lang-php">
+                    <pre class="prettyprint lang-typescript">
 $datos = ["Nombre"=> "Pepe",
     "Apellidos" => "Serrano Pérez",
     "Número_teléfono" => 123456789];

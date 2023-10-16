@@ -1,69 +1,82 @@
-<pre>
-    /*___           _                  
-    / ___|___ _ __ | |_ _ __ __ _ _ __ 
-    | |   / _ \ '_ \| __| '__/ _` | '__|
-    | |__|  __/ | | | |_| | | (_| | |   
-     \____\___|_| |_|\__|_|  \__,_|*/
-                                    
-    /*
-    💡 Si queremos centrar un bloque:
-                    Se recomienda poner:
-                        margin-left: auto
-                        margin-right: auto
-                    En lugar de:
-        margin: 0 auto (porque de esta forma tocamos margenes verticales que no nos interesa tocar)
-    */
 
-</pre>
 <style>
     .code{
         background-color: rgba(106, 158, 236, 0.275);
-        border: 1px solid blue;
+        border: 4px solid #808080;
         border-radius: 20px;
         padding: 10px;
-        width: 500px;
+        /* width: auto; */
+        max-width: fit-content;
         display: block;
         margin: auto;
     }
-</style>
 
-<h3 style="text-align: center;">Centrar elementos</h3>
-<style>
-     p#text-align{ /* 🧱 */
-        background-color: grey;
-        border: 2px dashed black;
-        padding: 20px;
+    p#text-align{ /* 🧱 */
+       background-color: grey;
+       border: 2px dashed black;
+       padding: 20px;
 
-        text-align: center; /*centra el CONTENIDO (no el contendor) */
-        width: 500px; /* Se alinea respecto al ancho. Si no aplicamos un ancho cogerá el ancho completo */
+       text-align: center; /*centra el CONTENIDO (no el contendor) */
+       width: 500px; /* Se alinea respecto al ancho. Si no aplicamos un ancho cogerá el ancho completo */
 
-        margin: auto; /* centra el CONTENDOR por que es un elemento 🧱, 💡 auto intentará siempre ocupar el ancho completo*/
+       margin: auto; /* centra el CONTENDOR por que es un elemento 🧱, 💡 auto intentará siempre ocupar el ancho completo*/
     } 
+
+    .pr{
+        color: black;
+        background-color: transparent;
+        overflow: auto;
+    }
+
+    .triangle {
+        width: 0;
+        height: 0;
+        border-left: 42px solid transparent;
+        border-right: 42px solid transparent;
+        border-top: 25px solid #808080;
+        margin: 0 auto;
+    }
 </style>
-<h3 style="text-align: center;">Text align</h3>
-<pre>
-    text align:
-    - Centra el contenido NO el contendor de un elemento de 🧱
-    - Se alinea RESPECTO AL ANCHO que le definimos
-    - ❌ no funciona con: 
-                - ➖
-                - ➖🧱
-                - 💨
-</pre>
+
+
+<div class="nota">
+    <p>Si queremos centrar un bloque, Se recomienda poner: <br>
+        margin-left: auto <br>
+        margin-right: auto <br>
+        <br>
+    En lugar de: <br>
+        margin: 0 auto<br>
+        (porque de esta forma tocamos margenes verticales que no nos interesa tocar)
+    </p>
+</div>       
+
+
+<div class="separador">
+    <h4>Centrar elementos</h4>
+</div>
+
+<div class="nota">
+    <p>La propiedad text align:<br>
+        Centra el contenido, NO el contendor de un elemento de blque<br>
+        Se alinea RESPECTO AL ANCHO que le definimos<br>
+    </p>
+</div>       
+
 <div class="code">
-<pre>
-p#text-align{ /* 🧱 */
-background-color: grey;
-border: 2px dashed black;
-padding: 20px;
+<pre class="pr">
+p#text-align{
+    background-color: grey;
+    border: 2px dashed black;
+    padding: 20px;
 
-text-align: center; /*centra el CONTENIDO (no el contendor) */
-width: 500px; /* Se alinea respecto al ancho. Si no aplicamos un ancho cogerá el ancho completo */
+    text-align: center; /*centra el CONTENIDO (no el contendor) */
+    width: 500px; /* Se alinea respecto al ancho. Si no aplicamos un ancho cogerá el ancho completo */
 
-margin: auto; /* centra el CONTENDOR por que es un elemento 🧱, 💡 auto intentará siempre ocupar el ancho completo*/
+    margin: auto; /* centra el CONTENDOR por que es un elemento bloque, auto intentará siempre ocupar el ancho completo*/
 } 
 </pre>
 </div>
+<div class="triangle"></div>
 <p id="text-align">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. 
     Distinctio iusto provident nihil, voluptas, autem porro sunt assumenda obcaecati 
@@ -83,15 +96,16 @@ margin: auto; /* centra el CONTENDOR por que es un elemento 🧱, 💡 auto inte
     } 
 </style>
 <div class="code">
-<pre>
-a#link{ /* ➖ */ 
-background-color: aqua;
+<pre class="pr">
+a#link{ 
+    background-color: aqua;
 
-display: block; /* <- text-align solo funciona con 🧱 */
-text-align: center;
+    display: block; /* <- text-align solo funciona con display block */
+    text-align: center;
 } 
 </pre>
-    </div>
+</div>
+<div class="triangle"></div>
 <a href="#" id="link">link ejemplo</a>
 
 <br>
@@ -123,34 +137,39 @@ text-align: center;
         no se podria calcular el auto por lo que se tendrían que poner valores en px en el margin */
     } 
 </style>
-<h3 style="text-align: center;">Centrando imagenes</h3>
+
+<div class="separador">
+    <h4>Centrando imagenes</h4>
+</div>
 <div class="code">
-<pre>
-img#imagen{ /* ➖🧱 */ 
-background-color: gray;
-border: 2px dashed black;
-padding: 20px;
+<pre class="pr">
+img#imagen{ 
+    background-color: gray;
+    border: 2px dashed black;
+    padding: 20px;
 
-/*💡 Las imagenes vienen con unas dimensiones de contenido establecidas por la imagen*/
+    /*💡 Las imagenes vienen con unas dimensiones de contenido establecidas por la imagen*/
 
-display: block; /* <- el elemento ocupa el ancho de la pantalla (pero como el contenedor tiene unas dimensiones establecidas, no abarcará VISUALMENTE toda la pantalla)
+    display: block; /* <- el elemento ocupa el ancho de la pantalla (pero como el contenedor tiene unas dimensiones establecidas, no abarcará VISUALMENTE toda la pantalla)
 
-    width: 100px; <- para visualizarlo mejor, hay que imaginarse que la imagen tiene sus dimensiones puestas 
-    height: 100px; 
+        width: 100px; <- para visualizarlo mejor, hay que imaginarse que la imagen tiene sus dimensiones puestas 
+        height: 100px; 
 
-text-align: center; <- es inutil porque la ya se encuentra en el centro de su contendor 
+    text-align: center; <- es inutil porque la ya se encuentra en el centro de su contendor 
 
--------------------------------------*/
+    -------------------------------------*/
 
-margin-right: auto; /* <- lo centrariamos solo con el margen */
-margin-left: auto;  /* <- lo centrariamos solo con el margen */
+    margin-right: auto; /* <- lo centrariamos solo con el margen */
+    margin-left: auto;  /* <- lo centrariamos solo con el margen */
 
-/* el margin auto se calcula respecto a la estructua de bloque, si no fuera display block
-no se podria calcular el auto por lo que se tendrían que poner valores en px en el margin */
+    /* el margin auto se calcula respecto a la estructua de bloque, si no fuera display block
+    no se podria calcular el auto por lo que se tendrían que poner valores en px en el margin */
 } 
 </pre>
+
 </div>
-<img id="imagen" src="img/javascript.png" alt="" width="100px">
+<div class="triangle"></div>
+<img id="imagen" src="{{ .Site.BaseURL }}/javascript.png" alt="" width="100px">
 
 
 <style>
@@ -205,7 +224,11 @@ no se podria calcular el auto por lo que se tendrían que poner valores en px en
         }
 
 </style>
-<h2 style="text-align: center;">Centrar contendores contenidos</h2>  
+
+<div class="separador">
+    <h4>Centrar contendores contenidos</h4>
+</div>
+
 <div id="img_box">
     <img id="imagen_box" src="img/javascript.png" alt="" width="100px">
 </div>
@@ -234,27 +257,32 @@ no se podria calcular el auto por lo que se tendrían que poner valores en px en
         height: 30px;
     }
 </style>
-<h3 style="text-align: center;">Centrando con POSITION</h3>
-<div class="code">
-<pre>
-.container{
-position: relative;
-height: 50px;
 
-border: 1px solid black;
+<div class="separador">
+    <h4>Centrando con POSITION</h4>
+</div>
+
+<div class="code">
+<pre class="pr">
+.container{
+    position: relative;
+    height: 50px;
+
+    border: 1px solid black;
 }
 .box{
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%,-50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 
-background-color: red;
-width: 30px;
-height: 30px;
+    background-color: red;
+    width: 30px;
+    height: 30px;
 }
 </pre>
 </div>
+<div class="triangle"></div>
 <div class="containerr1">
     <div class="boxy1"></div>
 </div>
@@ -275,24 +303,29 @@ height: 30px;
         height: 30px;            
     }
 </style>
-<h3 style="text-align: center;">Centrando con FLEXBOX</h3>
-<div class="code">
-<pre>
-.container{
-display: flex;
-justify-content: center;
-align-items: center;
-height: 50px;
 
-border: 1px solid black;
+<div class="separador">
+    <h4>Centrando con FLEXBOX</h4>
+</div>
+
+<div class="code">
+<pre class="pr">
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+
+    border: 1px solid black;
 }
 .box{
-background-color: blue;
-width: 30px;
-height: 30px; 
+    background-color: blue;
+    width: 30px;
+    height: 30px; 
 }
 </pre>         
 </div>
+<div class="triangle"></div>
 <div class="containerr2">
     <div class="boxy2"></div>
 </div>
@@ -311,28 +344,35 @@ height: 30px;
         height: 30px;
     }
 </style>
-<h3 style="text-align: center;">Centrando con GRID</h3>
-<div class="code">
-<pre>
-.container{
-display: grid;
-place-items: center;
-height: 50px;
 
-border: 1px solid black;
+<div class="separador">
+    <h4>Centrando con GRID</h4>
+</div>
+
+<div class="code">
+<pre class="pr">
+.container{
+    display: grid;
+    place-items: center;
+    height: 50px;
+
+    border: 1px solid black;
 }
 .box{
-background-color: yellow;
-width: 30px;
-height: 30px;
+    background-color: yellow;
+    width: 30px;
+    height: 30px;
 }
 </pre>         
 </div>
+<div class="triangle"></div>
 <div class="containerr3">
     <div class="boxy3"></div>
 </div>
 
-
+<div class="separador">
+    <h4>Referencias</h4>
+</div>
 <!-- INSTAGRAM ---------------------------------------------------- -->
 <div class="posts">
     <div class="post">

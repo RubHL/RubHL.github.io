@@ -13,23 +13,23 @@
         #aside #Rama #POO{
             background-color: black;
             position: relative;
-            top: 640px;
-            height: 625px;
+            top: 641px;
+            height: 626px;
             border: 1px solid #00c5e2;
         }
         #aside #Rama #tipos_datos{
             background-color: black;
             position: relative;
             top: 867px;
-            height: 2750px;
+            height: 2329px;
             border: 1px solid #00c5e2;
         }
         #aside #Rama #bucles{
-            background-color: rgb(64, 255, 0);
+            background-color: black;
             position: relative;
-            top: 773px;
-            height: 1484px;
-            
+            top: 1093px;
+            height: 1052px;
+            border: 1px solid #00c5e2;        
         }   
 
             #aside #Rama #POO div,
@@ -37,7 +37,6 @@
             #aside #Rama  #bucles div{
                 position: sticky;
                 top: 0;
-                /* background-color: red; */
                 height: 50px;
             }
 
@@ -45,11 +44,12 @@
             #aside #Rama #POO div{
                 height: 160px;
             }
-
             #aside #Rama #tipos_datos div{
                 height: 190px;
             }
-            
+            #aside #Rama #bucles div{
+                height: 140px;
+            }
             
             #aside #Rama #POO span,
             #aside #Rama #tipos_datos span,
@@ -79,7 +79,7 @@
         background-color: #00c5e2;
         height: 200px;
         position: relative;
-        top: 642px;
+        top: 641px;
         margin-bottom: 226px;
     }
 
@@ -123,6 +123,26 @@
             #otras_var div{
                 height: 113px !important;
             }
+            #array div{
+                height: 67px !important;
+            }
+            #otras_var div{
+                height: 163px !important;
+            }
+            #print div{
+                height: 57px !important;
+            }
+
+
+            #cond div{
+                height: 118px !important;
+            }
+            #deter div{
+                height: 119px !important;
+            }
+            #indet div{
+                height: 143px !important;
+            }   
 </style>
 <style>
     .x::before,
@@ -160,7 +180,7 @@
         </div>
         <div id="bucles">
             <div>
-                <span>Bucles</span>
+                <span>Condicionales</span>
             </div>     
         </div>
     </div>
@@ -190,7 +210,7 @@
                 <span>String</span>
             </div>
         </div> 
-        <div class="conten">
+        <div class="conten" id="array">
             <div>
                 <span>Arrays</span>
             </div>
@@ -201,15 +221,25 @@
             </div>
         </div> 
         
-        <div class="conten">
-            <div>
-                <span id="print">Print</span>
+        <div class="conten" id="print">
+            <div >
+                <span>Print</span>
             </div>
         </div>
-        <div class="conten">
+        <div class="conten" id="cond">
             <div>
-                <span>Otras variables</span>
+                <span>Condicional</span>
             </div>
-        </div>              
+        </div> 
+        <div class="conten" id="indet">
+            <div>
+                <span>Indeterminado</span>
+            </div>
+        </div> 
+        <div class="conten"  id="deter">
+            <div>
+                <span>Determinado</span>
+            </div>
+        </div>                 
     </div>
 </div>

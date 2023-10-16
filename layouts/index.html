@@ -1,57 +1,62 @@
 {{ define "main" }}
 
-    <article class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy {{ $.Param "text_color" | default "mid-gray" }}">
-        {{ .Content }}
-    </article>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@1,700&family=Cardo&family=Handjet:wght@300&family=Lato&family=Lilita+One&family=Lora:ital,wght@1,500&family=Monoton&family=Nunito&family=Oswald:wght@700&family=VT323&family=Victor+Mono:wght@100&family=Yatra+One&display=swap");
 
-  {{/* Define a section to pull recent posts from. For Hugo 0.20 this will default to the section with the most number of pages. */}}
-  {{ $mainSections := .Site.Params.mainSections | default (slice "post") }}
-  {{/* Create a variable with that section to use in multiple places. */}}
-  {{ $section := where .Site.RegularPages "Section" "in" $mainSections }}
-  {{/* Check to see if the section is defined for ranging through it */}}
-  {{ $section_count := len $section }}
-  
-  {{ if ge $section_count 1 }}
-    {{/* Derive the section name  */}}
-    {{ $section_name := index (.Site.Params.mainSections) 0 }}
-
-    <div class="pa3 pa4-ns w-100 w-70-ns center">
-        {{/* Use $section_name to get the section title. Use "with" to only show it if it exists */}}
-        {{ with .Site.GetPage "section" $section_name }}
-          <h1 class="flex-none">{{ $.Param "recent_copy" | default (i18n "recentTitle" .) }}</h1>
-        {{ end }}
-
-      {{ $n_posts := $.Param "recent_posts_number" | default 3 }}
-
-      <section class="w-100 mw8">
-        {{/* Range through the first $n_posts items of the section */}}
-        {{ range (first $n_posts $section) }}
-          <div class="relative w-100 mb4">
-            {{ .Render "summary-with-image" }}
-          </div>
-        {{ end }}
-      </section>
-
-      {{ if ge $section_count (add $n_posts 1) }}
-        <section class="w-100">
-            <h1 class="f3">{{ i18n "more" }}</h1>
-            {{/* Now, range through the next four after the initial $n_posts items. Nest the requirements, "after" then "first" on the outside */}}
-            {{ range (first 4 (after $n_posts $section))  }}
-            <h2 class="f5 fw4 mb4 dib {{ cond (eq $.Site.Language.LanguageDirection "rtl") "ml3" "mr3" }}">
-                <a href="{{ .RelPermalink }}" class="link black dim">
-                {{ .Title }}
-                </a>
-            </h2>
-            {{ end }}
-
-            {{/* As above, Use $section_name to get the section title, and URL. Use "with" to only show it if it exists */}}
-            {{ with .Site.GetPage "section" $section_name }}
-            <a href="{{ .RelPermalink }}" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc">{{ i18n "allTitle" . }}</a>
-            {{ end }}
-        </section>
-      {{ end }}
+    .card {
+      margin: auto;
+      color: #fff;
+      background: radial-gradient(#282727, #476257);
+      padding: 1em;
+      width: 700px;
+      height: 350px;
+      display: flex;
       
+      align-items: center;
+      justify-content: center;
+      background: rgba(168, 158, 158, 0.358);
+      box-shadow: 0 0px 18px 0 #00c5e2;
+      backdrop-filter: blur(7.5px);
+      -webkit-backdrop-filter: blur(7.5px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      letter-spacing: 1.5px;
+
+      font-family: "VT323", monospace;
+    }
+
+    .card .profile-row {
+      color: #ecfcfb;
+      text-shadow: 0px 0px 4px #00c5e2;
+      font-weight: 300;
+      margin-left: 34px;
+      margin-right: 21px;
+      font-size: 20px;
+    }
+
+    .card .profile-row a {
+      color: #00c5e2;
+    }
+
+    .card .profile-row h1{
+      margin-bottom: 20px;
+    }
+
+   
+
+  </style>
+  <div class="glitch">
+    <div class="card">
+      <div class="profile-row">
+        <h1>Saludos, curioso.</h1> 
+        <p>
+          Soy <a href="">@RubHl</a>, he desarrollado este sitio web con y para fines didácticos. Este proyecto ha servido 
+          para poner en práctica mis conocimientos en desarrollo web y poder recopilar información útil a
+          lo largo de mi aprendizaje. Se ha convertido en una pequeña guía donde se puede consultar cuestiones relacionadas con la programación. 
+          <br><br>Espero que te sea de utilidad si estas aprendiendo y gracias por tu visita.
+        </p>
+      </div>
     </div>
-  {{ end }}
+  </div>
 
 {{ end }}

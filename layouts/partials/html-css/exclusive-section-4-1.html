@@ -1,11 +1,31 @@
  
-<h2 style="text-align: center;">Width</h2>  
 <style>
+    .inter_line{
+        background-color: grey;
+        height: 4px;
+        display: flex;
+        /* justify-content: flex-start; */
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+    .inter_line > h3{
+            /* width: fit-content; */
+        padding: 10px;
+        margin-top: -19px;
+    }
+
     div#box-content{
         background-color: #fc3;
         border: 3px dotted blue;    
     }
+
 </style>
+
+
+<div class="separador">
+    <h4>Width</h4>
+</div>
+
 
 <div id="box-content" class="display">El contendor se adapta al contenido</div>
 <br>
@@ -47,9 +67,11 @@
 </div>
 
 
+<div class="separador">
+    <h4>Height</h4>
+</div>
 
 
-<h2 style="text-align: center;">Height</h2>  
 <style>   
     /* 💡 Hay que tener en cuenta que los divs vacios necesitan que le determines tanto el ancho como el alto
     porque al no tener un contenido de referencia, no saben cuanto ocupar*/ 
@@ -104,7 +126,13 @@
     <div id="hijo-2">contenido</div>
 </div>
 
-<h2 style="text-align: center;">Imagenes</h2> 
+
+<div class="separador">
+    <h4>Imagenes</h4>
+</div>
+
+
+
 <style>
         
     div#contenedor-imagen{
@@ -120,6 +148,16 @@
             width: 700000px;
             max-width: 100%; /* la imagen se adaptará al contenedor, si no, se desbordaría */
         }
+
+    .posts{
+        display: flex;
+        overflow: auto;
+        justify-content: space-evenly;
+        margin-top: 46px;
+    }
+
+
+
 </style>
 
 <div id="contenedor-imagen">
@@ -128,6 +166,12 @@
 
 <img  src="{{ .Site.BaseURL }}/javascript.png" alt="" width="100px">
 <img  src="{{ .Site.BaseURL }}/javascript.png" alt="" width="100px">
+
+ 
+<div class="separador">
+    <h4>Referencias</h4>
+</div>
+
 
 <!-- INSTAGRAM ---------------------------------------------------- -->
 <div class="posts">

@@ -1,14 +1,6 @@
-<h2 style="text-align: center;">Stacking context</h2>  
+
 <style>
-    /*3️⃣ STACKING CONTEXT ============================================================*/
-    
-    /* Orden del stacking contex (de delante a atrás):
-            1º Elementos posiconados con un z-index de 1 o más (si estan empatados, lo determina el orden html)
-            2º Elementos posiciondos sin z-index (z-index:auto)
-            3º Elementos no posicionados (ordel del html)
-            4º Elementos con z-index negativo  */
-    
-        
+
     div.cajones{
         width: 100px;
         height: 100px;
@@ -22,6 +14,7 @@
 
     
     div#contenedor{
+        border: 3px solid black;
         background-color: gray;
         margin-top: -30px; /* <- 1. Solo con esto se pondria por delante de cajon 1 debio al orden del html: 3º */ 
         position: relative; /* <- 4. Añadimos un position: 2º para ponernos por delante de cajon 2 */
@@ -49,10 +42,20 @@
     }
 </style>
 
+<div class="nota">
+    <ol>
+        <p>Orden del stacking contex (de delante a atrás):</p>
+        <li>Elementos posiconados con un z-index de 1 o más (si estan empatados, lo determina el orden html)</li>
+        <li>Elementos posiciondos sin z-index (z-index:auto)</li>
+        <li>Elementos no posicionados (ordel del html)</li>
+        <li> Elementos con z-index negativo</li>
+    </ol>
+</div>  
+
 <div class="cajones" id="cajon-1">caja 1</div>
 
 <div id="contenedor">
-    <h3 id="titulo_intero">titulo</h3>
+    <p id="titulo_intero">titulo</p>
     <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
         Rem quia, architecto, natus laboriosam rerum doloremque recusandae odit nihil consequuntur 

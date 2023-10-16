@@ -1,0 +1,23 @@
+{{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
+{{ define "main" }}
+<style>
+  #err{
+    display: flex;
+    justify-content: center;
+    font-family: monospace;
+  }
+  #err p{
+    font-size: 23px;
+    font-weight: bold;
+  }
+</style>
+    <div id="err">
+
+      <div>
+        <p> Página en desarrollo...</p>
+        <a href="{{ .Site.BaseURL }}">Volver a inicio</a>
+      </div>
+      <img src="{{ .Site.BaseURL }}/dev.gif" width="250px" alt="" >
+
+    </div>
+{{ end }}

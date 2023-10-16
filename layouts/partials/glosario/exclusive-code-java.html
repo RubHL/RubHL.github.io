@@ -47,7 +47,7 @@
                     </tr>
                     <tr>
                     <th>Notas</th>
-                    <td>Diferencia entre ámbito LOCAL y GLOBAL muy marcada</td>
+                    <td>-</td>
                     </tr>
                 </tbody>
             </table>   
@@ -55,26 +55,131 @@
             <div class="card_effect"> 
                 <div class="carrusel-images" data-num="2">                           
 <pre class="prettyprint lang-java">                          
-final int numero = 23;
-final double numero = 23.0;
+class Vehiculo { // Superclase
+
+    // Atributos de objeto
+    private String color;
+    protected int ruedas;
+    String motor; //Si no se especifica es público por defecto 
+
+    // Atributos de clase
+    private static String tipoVehiculo = "Terrestre";
+
+    // Constructor
+    public Vehiculo(String color) {
+        this.ruedas = 4;
+        this.color = color;
+    }
+
+    // Métodos de objeto
+    void arrancar() {
+        System.out.println("Arranca\n");
+    }
+
+    void tipoMotor(String motor) {
+        this.motor = motor;
+        System.out.println("El motor del coche es " + this.motor + "\n");
+    }
+
+    String getColor() {
+        return this.color;
+    }
+
+    int getRuedas() {
+        return this.ruedas;
+    }
+
+    // Métodos de clase
+    public static void setTipoVehiculo(String tipoVehiculo) {
+        Vehiculo.tipoVehiculo = tipoVehiculo;
+    }
+
+    public static String getTipoVehiculo() {
+        return tipoVehiculo;
+    }
+}
+
+//::::::::::::::::::::::::::::::::::::::::::::
+
+class Coche extends Vehiculo { // Subclase que hereda
+
+    // Constructor
+    public Coche(String color) {
+        super(color);
+    }
+
+    // Métodos de objeto
+    void arrancar_hijo() {
+        super.arrancar(); // Metodo del padre
+        System.out.println("El motor ruge como el de un coche\n");
+    }
+
+    // Sobreescritura del método tipoMotor
+    @Override
+    void tipoMotor(String motorCoche) {
+        this.motor = motorCoche; // Ten en cuenta que "motor" es un atributo del padre
+        System.out.println("El motor del coche es " + this.motor + "\n");
+    }
+}
+
+
+
+
+
+    
 </pre>
 <pre class="prettyprint lang-java">                          
-final int NUM = 23
-final double NUM = 23.0
+import paquete.ArchivoClaseCoche; // Primero tengo que importar la clase
+
+public class Main {
+    public static void main(String[] args) {
+
+        // Instancia del Objeto 
+        new Coche();
+        Coche renault = new Coche(); // Los paréntesis son obligatorios aunque este vacio
+        Coche mazda = new Coche("azul");
+        Coche seat = new Coche("verde");
+
+        // Propiedades de objeto
+        mazda.color = "Rosa"; // Error, la propiedad es privada para que otro programador no pueda modificarlo, (abria que recurir al metodo set)
+        System.out.println("Color: " + mazda.color); // Si la propiedd es privada no podemos ver su atributo, (abria que recurir al metodo get)
+        System.out.println("Color: " + mazda.getColor()); // mazda al ser un objeto de su clase aunque este en private, tiene acceso
+        System.out.println("Color: " + truck.getColor()); // truck al ser un objeto de la clase hija no puede acceder el atributo color de su clase padre porque esta en private, para que pueda hacerlo tiene que estar en protected
+
+        // Porpiedades de Clase 
+        // La propiedad de la clase no se puede acceder a traves del objeto, porque pertenece solo a la clase, tambien deberia ser privada para no poder manipularla
+        Coche.setTipoVehiculo("Lo que me de la gana");
+
+        // Metodos de Objeto
+        renault.arrancar();
+        renault.tipoMotor(1600);
+
+        // Metodos de Clase
+        Coche.setTipoVehiculo("estandar"); // Los metodos de la clase, se utilizan con la clase
+    }
+}
+
+    
+
+
+
+
+
+
 </pre>
                 </div>
                 <div class="legend">
                     <div class="active">Clase</div>
-                    <div>V.2</div>
-                    <div><img src="img/Anexo/frio.png" alt="" width="80px"></div>
+                    <div>Instanciar</div>  
                 </div>
             </div>
+
             <hr>
+
             <div class="card_effect"> 
                 <div class="carrusel-images" data-num="2">                           
 <pre class="prettyprint lang-java">                          
-final int numero = 23;
-final double numero = 23.0;
+// Java usa un paradigma orientado totalmente a objetos, por lo que no usa funciones sueltas
 </pre>
 <pre class="prettyprint lang-java">                          
 final int NUM = 23
@@ -82,30 +187,350 @@ final double NUM = 23.0
 </pre>
                 </div>
                 <div class="legend">
-                    <div class="active">V.1</div>
-                    <div>V.2</div>
-                    <div><img src="img/Anexo/frio.png" alt="" width="80px"></div>
+                    <div class="active">Funciones</div>
                 </div>
             </div>
+
             <hr>
-            <div class="card_effect no_carrusel"> 
-<pre  class="prettyprint lang-java">                          
-int int numero = 23;
-double numero = 23.0;
-</pre>
-            </div>  
-            <hr>
-            <div class="card_effect no_carrusel"> 
+
+
+
+            <div class="card_effect"> 
+                <div class="carrusel-images" data-num="1">                           
 <pre class="prettyprint lang-java">                          
-String cadena = '23'; 
+final int MI_CONSTANTE_NUM = 23;
+final int MI_CONSTANTE_CADENA = "Cadena";
 </pre>
-            </div> 
+                </div>
+                <div class="legend">
+                    <div class="active">Constantes</div>
+                </div>
+            </div>
+
             <hr>
-            <div class="card_effect no_carrusel"> 
-<pre class="prettyprint lang-java">                          
-String cadena = '23'; 
+
+            <div class="card_effect"> 
+                <div class="carrusel-images" data-num="3">                           
+<pre class="prettyprint lang-java">
+
+int numero;
+numero = 23;
+
+int numero = 23;
+
+int numero,numero2,numero3;
+
+int numero = 20 ,numero2= 22 ,numero3= 23;
 </pre>
-            </div>       
+<pre class="prettyprint lang-java">
+
+String cadena = "5";
+
+int resultado = Integer.parseInt(cadena); // Se castea con una función predefinida (parseInt)
+
+double resultadoDouble = Double.parseDouble(cadena); // Para números con decimales
+
+long resultadoLong = Long.parseLong(cadena); // Para números enteros largos (long)
+</pre>
+<pre class="prettyprint lang-java">
+
+// Genera un número aleatorio entre 0 y 1 (no se especifica el rango)
+double num1 = Math.random();
+System.out.println("Número aleatorio entre 0 y 1: " + num1);
+
+// Genera un número aleatorio entre 0 y 10
+int num2 = new Random().nextInt(11);
+System.out.println("Número aleatorio entre 0 y 10: " + num2);
+
+// Calcula la potencia de 2 elevado a la 2
+double num3 = Math.pow(2, 2);
+System.out.println("2 elevado a la 2: " + num3);
+
+// Redondea un número a 2 decimales
+double num4 = Math.round(num3 * 100.0) / 100.0;
+System.out.println("Número redondeado a 2 decimales: " + num4);
+
+// Genera un número aleatorio infinito
+while (true) {
+    double num5 = Math.random();
+    System.out.println("Número aleatorio infinito: " + num5);
+}
+
+// Genera un número aleatorio entre 0 y 10 (0 ~ 10)
+int num6 = new Random().nextInt(11);
+System.out.println("Número aleatorio entre 0 y 10: " + num6);
+
+// Genera un número aleatorio infinito
+while (true) {
+    int num7 = new Random().nextInt(11);
+    System.out.println("Número aleatorio infinito: " + num7);
+}
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+                </div>
+                <div class="legend">
+                    <div class="active">Constantes</div>
+                    <div>Castear numericos</div> 
+                    <div>Funciones predefinidas</div>   
+                </div>
+            </div>
+
+            <hr>
+
+
+            <div class="card_effect"> 
+                <div class="carrusel-images" data-num="3">                           
+<pre class="prettyprint lang-java">
+
+String cadena ;
+cadena = "23";
+
+String cadena = "23";
+
+String cadena,cadena2,cadena3;
+
+String cadena = "20" ,cadena2= "22" ,cadena3= "23";
+
+//Propiedades ====================
+System.out.println(cadena.lenght); //Propiedad de array
+
+</pre>
+<pre class="prettyprint lang-java">
+
+int num = 5;
+String resultado = String.valueOf(num); 
+String resultado = num + ""; // Truco para convertir a string
+</pre>
+<pre class="prettyprint lang-java">
+
+-
+
+</pre>
+                </div>
+                <div class="legend">
+                    <div class="active">Cadena de crácteres</div>
+                    <div>Castear a String</div> 
+                    <div>Funciones predefinidas</div>   
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="card_effect"> 
+                <div class="carrusel-images" data-num="3">                           
+<pre class="prettyprint lang-java">
+
+-
+
+</pre>
+<pre class="prettyprint lang-java">
+
+-
+</pre>
+<pre class="prettyprint lang-java">
+
+-
+
+</pre>
+                </div>
+                <div class="legend">
+                    <div class="active">Variables de Arrays</div>
+                    <div>Funciones predefinidas</div> 
+                    <div>-</div>   
+                </div>
+            </div>
+
+        <hr>
+
+        <div class="card_effect"> 
+            <div class="carrusel-images" data-num="2">                           
+<pre class="prettyprint lang-java">
+
+-
+
+</pre>
+<pre class="prettyprint lang-java">
+
+-
+
+</pre>
+            </div>
+            <div class="legend">
+                <div class="active">Variables de funciones</div>
+                <div>-</div> 
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="card_effect"> 
+            <div class="carrusel-images" data-num="2">                           
+<pre class="prettyprint lang-java">
+
+System.out.println("Hola mundo");
+
+</pre>
+<pre class="prettyprint lang-java">
+
+-
+</pre>
+            </div>
+            <div class="legend">
+                <div class="active">Datos de salida</div>
+                <div>Funciones predefinidas</div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="card_effect"> 
+            <div class="carrusel-images" data-num="3">  
+                <pre class="prettyprint lang-javascript">                          
+if(edad >= 18){
+console.log("Eres mayor de edad");
+}else{
+console.log("No puedes entrar");
+} 
+
+
+
+            </pre>
+
+            <pre class="prettyprint lang-javascript">   
+// Con el operador ternatio puedes guardarlo directamente en un variable o en un echo
+resultado = edad&lt;18 ? "Eres menor de edad" : "Eres mayor de edad";
+console.log(resultado);                    
+
+console.log(usuario=="Pepe" && $edad&lt;18 ? "Eres menor de edad" : "Eres mayor de edad");
+            </pre>
+            <pre class="prettyprint lang-javascript">   
+//Con llaves
+switch($variable){
+case "Juan":
+//code
+break;
+case "Pepe":
+//code
+break;
+case "Antonio":
+//code
+break;
+default:
+//code
+}
+
+$var1 = "Pepe"
+$var2 = 123
+switch(true){
+case $var1=="Juan" && $var2== 222:
+//code
+break;
+case $var1=="Pepe" && $var2== 123:
+//code
+break;
+case $var1=="Antonio" && $var2== 432:
+//code
+break;
+default:
+//code
+}
+
+//Sin llaves
+switch($variable):
+case 1:
+//code
+break;
+case 2:
+//code
+break;
+case 3:
+//code
+break;
+default:
+//code
+endswitch
+
+
+
+
+
+
+
+
+
+                </pre>
+            </div>
+            <div class="legend">
+                <div class="active">Condición if</div>
+                <div>Operador ternario</div>
+                <div>Switch Case</div>
+            </div>
+        </div> 
+
+        <hr>
+
+
+        
+    <div class="card_effect"> 
+        <div class="carrusel-images" data-num="2">  
+            <pre class="prettyprint lang-javascript">                          
+var edad
+while(edad &lt;= 0 || edad &gt; 105){
+edad = prompt("Introduce edad válida")
+}
+            </pre>
+            <pre class="prettyprint lang-javascript">   
+var edad
+Do{
+edad = prompt("Introduce edad válida")
+}while(edad &lt;= 0 || edad &gt; 105 || isNaN(edad))
+</pre>
+        </div>
+        <div class="legend">
+            <div class="active">Bucle indeterminado: While</div>
+            <div>Bucle indeterminado: Do while</div>
+        </div>
+    </div> 
+
+
+
+    <hr>
+    <div class="card_effect"> 
+        <div class="carrusel-images" data-num="2">  
+            <pre class="prettyprint lang-php"> 
+                                              
+for(let i = 0; i&lt;= 10; i++){
+//i valdrá: 11
+}
+
+            </pre>
+            <pre class="prettyprint lang-php">   
+const numeros = [1,2,3,4,5]
+numeros.forEach(number=>console.log(number))
+// 1
+// 2
+// ...
+
+            </pre>
+        </div>
+        <div class="legend">
+            <div class="active">Bucle determinado: For</div>
+            <div>Bucle determinado: ForEach</div>
+        </div>
+    </div>
+
+
+
         </div>
     <button class="avanzar">&gt;</button>
 </div>

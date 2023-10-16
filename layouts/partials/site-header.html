@@ -6,22 +6,26 @@
     display: flex;
     justify-content: center;
     text-align: center;
+
+    font-family: monospace;
   }
 
-  nav ul{
+  #menu ul{
     backdrop-filter: blur(7.5px);
     -webkit-backdrop-filter: blur(7.5px);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     padding: 0;
+
+    font-size: 20px
   }
 
-  nav a{
+  #menu a{
     text-decoration: none;
     color: black;
   }
 
-  nav li{
+  #menu li{
       display: inline-block;
       margin: 10px;
       padding: 5px;
@@ -33,32 +37,36 @@
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.18);
   }
-  nav li:hover{ 
+  #menu li:hover{ 
        background-color: black;
      
       transform: scale(1.2); /* Increase scale to 120% */
   }
-  nav li:hover > a{ 
+  #menu li:hover > a{ 
        color: white;  
   }
 
 
   
 
-  ul .Etiquetas{
+  #menu ul .Etiquetas{
       display: inline-block;
-      width: 50%;
+      width: 57%;
       text-align: center;
   }
-  ul .Etiquetas li:nth-child(3) {
+  #menu ul .Etiquetas li:nth-child(3) {
       width: 50%;
   }
 
-  nav ul .Codigo{
+  #menu ul .Codigo{
       display: inline-block;
+      width: 57%;
   }
-  nav ul .Codigo li{
+  #menu ul .Codigo li{
       display: block;
+  }
+  #menu ul .Codigo li:nth-child(2) {
+      margin-top: 15px;
   }
 
 </style>
@@ -66,13 +74,13 @@
   <nav>
       <ul>
           <div class="Etiquetas">
-              <li><a href="{{ .Site.BaseURL }}Etiquetas_HTML.html/">Etiquetas HTML</a></li>
-              <li><a href="{{ .Site.BaseURL }}Selectores_CSS.html/">Selectores CSS</a></li>
+              <li><a href="{{ .Site.BaseURL }}etiquetas_html/">Etiquetas HTML</a></li>
+              <!-- <li><a href="{{ .Site.BaseURL }}Selectores_CSS.html/">Selectores CSS</a></li> -->
               <li><a href="{{ .Site.BaseURL }}html-css/">CSS + HTML</a></li> 
           </div>
           <div class="Codigo">
-              <li><a href="{{ .Site.BaseURL }}DOM_JAVASCRIPT.html/">Problemas de Javascript</a></li>
-              <li><a href="{{ .Site.BaseURL }}glosario/">Glosario de codigos de programación</a></li>
+              <li><a href="{{ .Site.BaseURL }}DOM_JAVASCRIPT/">Problemas de Javascript</a></li> 
+              <li><a href="{{ .Site.BaseURL }}glosario/">Guia de códigos</a></li>
           </div>
       </ul>
   </nav>

@@ -1,0 +1,28 @@
+<style>
+    #aviso{
+        background-color: #e14125c9;
+        height: 50px;
+        display: flex;
+        width: fit-content;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: auto;
+        border-radius: 20px;
+        justify-content: center;
+    }
+
+    #aviso p{
+        color:white
+    }
+    #aviso img{
+        width: 35px;
+        height: 35px;
+        margin: auto 5px auto 5px;
+    }
+</style>
+
+
+<div id="aviso">
+    <img src=" {{ .Site.BaseURL }}/advertencia.png" alt="">
+    <p>El contenido de la página se encuentra actualmente en desarrollo</p>
+</div>

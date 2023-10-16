@@ -3,14 +3,28 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    {{/* NOTE: the Site's title, and if there is a page title, that is set too */}}
+
+    <!-- 🔎SEO -->
+    {{/* NOTE: the Site's title, and if there is a page title, that is set too */}} 
     <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+    <meta name="description" content=
+    "{{ with .Description }}{{ . }}
+     {{ else }}
+      {{if .IsPage}}
+        {{ .Summary }}
+      {{ else }}
+        {{ with .Site.Params.description }}{{ . }}{{ end }}
+      {{ end }}
+     {{ end }}">
+
     {{ hugo.Generator }}
+
     {{/* NOTE: For Production make sure you add `HUGO_ENV="production"` before your build command */}}
     {{ $production := eq (getenv "HUGO_ENV") "production" | or (eq site.Params.env "production") }}
     {{ $public := not .Params.private }}
+
     {{ if and $production $public }}
       <meta name="robots" content="index, follow">
     {{ else }}
@@ -38,11 +52,33 @@
       {{ template "_internal/google_analytics.html" . }}
     {{ end }}
 
-	{{ block "head" . }}{{ partial "head-additions.html" . }}{{ end }}
+	  {{ block "head" . }}{{ partial "head-additions.html" . }}{{ end }}
   </head>
 
+  
+
   <body class="ma0 {{ $.Param "body_classes"  | default "avenir bg-near-white"}}{{ with getenv "HUGO_ENV" }} {{ . }}{{ end }}">
-    
+
+    <style>
+      body{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh; 
+      }
+
+      .nota{
+        background-color: #fb7676;
+        width: fit-content;
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 20px;
+        max-width: 80%;
+        border-radius: 10px;
+      }
+    </style>
+
     {{ block "header" . }}
       {{ partial "page-header.html" . }}
       {{ partial "background-matrix.html" . }}
@@ -52,7 +88,7 @@
     <main>{{ block "main" . }}{{ end }}</main>
 
     {{ block "footer" . }}
-      {{ partialCached "site-footer.html" . }}
+      {{ partial "site-footer.html" . }}
     {{ end }}
 
     <script async src="https://www.instagram.com/embed.js"></script>  <!-- Cuando se utilizan dos barras diagonales sin un protocolo (como "http:" o "https:"), el navegador asume el protocolo actual de la página. -->

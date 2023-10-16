@@ -59,158 +59,210 @@
             </table>     
             
             <div class="card_effect"> 
-                <div class="carrusel-images" data-num="3">                                       
-                    <pre class="prettyprint lang-javascript">                          
-const numero = 23;
+                <div class="carrusel-images" data-num="2">                                       
+                    <pre class="prettyprint lang-javascript">
+&lt;script&gt;                         
+    class Vehiculo { // Superclase
+
+        // Los atributos se definene en el contructor
+        // En JavaScript, no es necesario especificar la visibilidad (por defecto es público)
+        constructor(color) {
+            this.color = color;
+            this.ruedas = 4;
+            this.motor = ""; 
+        }
+
+        // Métodos de objeto
+        arrancar() {
+            console.log("Arranca");
+        }
+
+        tipoMotor(motor) {
+            this.motor = motor;
+            console.log("El motor del coche es " + this.motor);
+        }
+
+        getColor() {
+            return this.color;
+        }
+
+        getRuedas() {
+            return this.ruedas;
+        }
+
+        // Métodos de clase
+        static setTipoVehiculo(tipoVehiculo) { // El atributo de clase se define con el metodo
+            Vehiculo.tipoVehiculo = tipoVehiculo; 
+        }
+
+        static getTipoVehiculo() {
+            return Vehiculo.tipoVehiculo;
+        }
+    }
+
+    class Coche extends Vehiculo {
+
+        // Constructor
+        constructor(color) {
+            super(color);
+        }
+
+        // Métodos de objeto
+        arrancar_hijo() {
+            super.arrancar(); // Llama al método del padre
+            console.log("El motor ruge como el de un coche");
+        }
+
+        // Sobreescritura del método tipoMotor
+        tipoMotor(motorCoche) {
+            this.motor = motorCoche; // Ten en cuenta que "motor" es un atributo del padre
+            console.log("El motor del coche es " + this.motor);
+        }
+    }
+&lt;/script&gt;                      
+
+
+
 
                     </pre> 
-                    <pre class="prettyprint lang-javascript">                          
-const int NUM = 23
-const double NUM = 23.0
+                    <pre class="prettyprint lang-javascript">&lt;script&gt;                         
+    // Instancia del Objeto
+    new Coche();
+    const renault = new Coche();
+    const mazda = new Coche("azul");
+    const seat = new Coche("verde");
+
+    // Propiedades de objeto
+    mazda.color = "Rosa"; // Error, la propiedad es privada para que otro programador no pueda modificarlo (debería usar un método set)
+    console.log("Color: " + mazda.color); // Si la propiedad es privada, no podemos ver su atributo (debería usar un método get)
+    console.log("Color: " + mazda.getColor()); // mazda al ser un objeto de su clase, aunque esté en privado, tiene acceso
+
+    // Propiedades de Clase
+    // La propiedad de la clase no se puede acceder a través del objeto, porque pertenece solo a la clase; también debería ser privada para no poder manipularla
+    Coche.setTipoVehiculo("Lo que me de la gana");
+
+    // Métodos de Objeto
+    renault.arrancar();
+    renault.tipoMotor(1600);
+
+    // Métodos de Clase
+    Coche.setTipoVehiculo("estándar"); // Los métodos de la clase se utilizan con la clase
+&lt;/script&gt;  
 
 
 
-const GenerateRandomNumber = max => {
-returnMath.floor(Math.random() * (max + 1));
-};  
-const randomNumber = GenerateRandomNumber(10)
 
-const GenerateRandomNumber = (min, max) => {
-return Math.floor(Math.random() * (max+1 - min) + min);
-};
-const randomNumber = GenerateRandomNumber(10, 20)
 
-console.log(randomNumber)
+
+
                     </pre>  
-                    <pre class="prettyprint lang-javascript">                          
-const int NUM = 23
-const double NUM = 23.0
-
-
-
-const GenerateRandomNumber = max => {
-returnMath.floor(Math.random() * (max + 1));
-};  
-const randomNumber = GenerateRandomNumber(10)
-
-const GenerateRandomNumber = (min, max) => {
-return Math.floor(Math.random() * (max+1 - min) + min);
-};
-const randomNumber = GenerateRandomNumber(10, 20)
-
-console.log(randomNumber)
-                    </pre>   
                 </div>
                 <div class="legend">
                     <div class="active">Clase</div>
-                    <div>V.2</div>
-                    <div><img src="img/Anexo/frio.png" alt="" width="80px"></div>
+                    <div>Instanciar</div>
                 </div>
             </div>
 
             <hr>
 
             <div class="card_effect"> 
-                <div class="carrusel-images" data-num="2">  
-                    <pre class="prettyprint lang-javascript">                          
-//Llamada a función normal                                                
-function mi_funcion(){
-var hoy = new Date();
-docuemnt.write(hoy)
-}
-&lt;p&gt;El dia de hoy es: &lt;script&gt;mi_funcion();&lt;/script&gt; &lt;/p&gt;
+                <div class="carrusel-images" data-num="1">  
+                    <pre class="prettyprint lang-javascript">&lt;script&gt;                                        
+    // Llamada a función
+    function mi_funcion() {
+        // code
+        return "resultado"; // Opcional
+    }
+    mi_funcion();
+
+    // Llamada a función con paso de parámetros
+    // Recuerda que el ámbito local de la variable está aislado del exterior (a diferencia de JavaScript)
+    function mi_funcion_con_parametros(parametro1, parametro2) {
+        // code
+    }
+    mi_funcion_con_parametros("ejemplo_parametro", "ejemplo_parametro_2");
+
+    // Llamada a función con paso de parámetro por defecto
+    // Recuerda que el ámbito local de la variable está aislado del exterior (a diferencia de JavaScript)
+    function mi_funcion_default(parametro1, parametro2 = true) {
+        
+        parametro1 = parametro1.toLowerCase();
+
+        if (parametro2) {
+            return parametro1.charAt(0).toUpperCase() + parametro1.slice(1);
+        } else {
+            return "has modificado el parámetro por defecto";
+        }
+    }
+    mi_funcion_default("ejemplo_parametro");
+    mi_funcion_default("ejemplo_parametro", false);
+
+    // Llamada a función con paso de parámetro por valor
+    function incrementa(param) {
+        param++;
+        return param;
+    }
+    let num = 5;
+    console.log(incrementa(num)); // 6
+    console.log(num); // 5
+&lt;/script&gt;                      
+
+                        
 
 
-//Paso de parametro
-//Recuerda que el ambito local de la variable NO esta aislada del exterior (no como en php)
-function mi_funcion(parametro){
 
-}
-function("ejemplo_parametro");
+
                     </pre>
 
-                    <pre class="prettyprint lang-javascript">   
-$random = Math.round(); //redondea
-                    </pre>
+                    <!-- <pre class="prettyprint lang-javascript">   
+...
+                    </pre> -->
                 </div>
                 <div class="legend">
                     <div class="active">Funciones</div>
-                    <div>Funciones predefinidas</div>
+                    <!-- <div>Funciones predefinidas</div> -->
                 </div>
             </div> 
 
             <hr>
 
             <div class="card_effect"> 
-                <div class="carrusel-images" data-num="3">                                       
+                <div class="carrusel-images" data-num="1">                                       
                     <pre class="prettyprint lang-javascript">                          
-const numero = 23;
-
-                    </pre> 
-                    <pre class="prettyprint lang-javascript">                          
-const int NUM = 23
-const double NUM = 23.0
-
-
-
-const GenerateRandomNumber = max => {
-returnMath.floor(Math.random() * (max + 1));
-};  
-const randomNumber = GenerateRandomNumber(10)
-
-const GenerateRandomNumber = (min, max) => {
-return Math.floor(Math.random() * (max+1 - min) + min);
-};
-const randomNumber = GenerateRandomNumber(10, 20)
-
-console.log(randomNumber)
-                    </pre>  
-                    <pre class="prettyprint lang-javascript">                          
-const int NUM = 23
-const double NUM = 23.0
-
-
-
-const GenerateRandomNumber = max => {
-returnMath.floor(Math.random() * (max + 1));
-};  
-const randomNumber = GenerateRandomNumber(10)
-
-const GenerateRandomNumber = (min, max) => {
-return Math.floor(Math.random() * (max+1 - min) + min);
-};
-const randomNumber = GenerateRandomNumber(10, 20)
-
-console.log(randomNumber)
+const MI_CONSTANTE_NUM = 23;
+const MI_CONSTANTE_CADENA = "Cadena"
                     </pre>   
                 </div>
                 <div class="legend">
-                    <div class="active">V.1</div>
-                    <div>V.2</div>
-                    <div><img src="img/Anexo/frio.png" alt="" width="80px"></div>
+                    <div class="active">Constantes</div>
                 </div>
             </div>
             <hr>
             <div class="card_effect"> 
                 <div class="carrusel-images" data-num="3">                                       
-                    <pre class="prettyprint lang-javascript"> 
+                    <pre class="prettyprint lang-javascript">
+
 var numero;
 numero = 23;
-//======================== 
+
 var numero = 23;
-//======================== 
+
 var numero,numero2,numero3;
-//======================== 
+
 var numero = 20 ,numero2= 22 ,numero3= 23;
                     </pre>
                     <pre class="prettyprint lang-javascript">     
 var cadena = "5"
+
 var resultado = Number(cadena) //Se castea con una funcion predefinida
+
 var resultado = parseInt(cadena) //Se castea con una funcion predefinida
                     </pre>
                     <pre class="prettyprint lang-javascript">     
 let num = 5
-isNan(num)
+isNan(num) // false
+
+let random = Math.round(); //redondea
                     </pre>
                 </div> 
             <div class="legend">
@@ -227,18 +279,20 @@ isNan(num)
                 <pre class="prettyprint lang-javascript">                         
 var cadena ;
 cadena = "23";
-//======================== 
+ 
 var cadena = "23";
-//======================== 
+
 var cadena,cadena2,cadena3;
-//======================== 
+
 var cadena = "20" ,cadena2= "22" ,cadena3= "23";
 
 //Propiedades ====================
-consle.log(nombre.lenght) //Propiedad de array
+consle.log(cadena.lenght) //Propiedad de array
                 </pre>                      
                 <pre class="prettyprint lang-javascript">     
-?
+let num = 5;
+let resultado = num.toString(); // Método toString para convertir a cadena
+let resultado2 = num + ""; // Truco para convertir a cadena
                 </pre>
                 <pre class="prettyprint lang-javascript">  
 let cadena = "Hola Mundo"                          
@@ -326,7 +380,8 @@ console.log(randomNumber)
                 </div>
                 <div class="legend">
                     <div class="active">Variables de Arrays</div>
-                    <div>Funciones de Arrays</div>
+                    <div>Funciones predefinidas</div> 
+                    <div>-</div>   
                 </div>
             </div> 
 
